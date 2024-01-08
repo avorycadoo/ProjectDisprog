@@ -2,10 +2,10 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="WebServiceServer_1">
+    <client name="WebServiceServer">
       <wsdl-url>http://localhost:8080/WebServiceProjectUASDisprog/WebServiceServer?wsdl</wsdl-url>
       <local-wsdl-file>localhost_8080/WebServiceProjectUASDisprog/WebServiceServer.wsdl</local-wsdl-file>
-      <package-name>newpackage.model</package-name>
+      <package-name forceReplace="true">newpackage.model</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -31,6 +31,10 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>newpackage.model</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

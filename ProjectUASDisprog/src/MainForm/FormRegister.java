@@ -7,6 +7,7 @@ package MainForm;
 import javax.swing.JOptionPane;
 import newpackage.model.user;
 
+
 /**
  *
  * @author Valerin
@@ -269,4 +270,12 @@ public class FormRegister extends javax.swing.JFrame {
     private javax.swing.JTextField txtRePassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private static void registrasi(java.lang.String username, java.lang.String password, java.lang.String email) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        port.registrasi(username, password, email);
+    }
+
+
 }
