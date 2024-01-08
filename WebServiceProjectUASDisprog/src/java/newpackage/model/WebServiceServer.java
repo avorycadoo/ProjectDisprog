@@ -63,6 +63,16 @@ public class WebServiceServer {
         return null;
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getChat")
+    public String getChat(@WebParam(name = "idPost") int idPost) {
+        //TODO write your implementation code here:
+        
+        return null;
+    }
+
     
 
 }

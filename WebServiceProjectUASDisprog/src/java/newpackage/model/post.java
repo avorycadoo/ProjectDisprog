@@ -82,6 +82,8 @@ public class post extends MyModel{
     public void setUser_pembuat(int user_pembuat) {
         this.user_pembuat = user_pembuat;
     }
+    
+    
 
     @Override
     public void insertData() {
