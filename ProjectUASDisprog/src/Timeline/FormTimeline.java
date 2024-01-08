@@ -4,6 +4,11 @@
  */
 package Timeline;
 
+import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Valerin
@@ -17,6 +22,56 @@ public class FormTimeline extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+    private void initComponents() {
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Timeline");
+
+        // Inisialisasi komponen utama
+        JPanel panelPosts = new JPanel();
+        panelPosts.setLayout(new BoxLayout(panelPosts, BoxLayout.Y_AXIS));
+
+        // Ambil data postingan dari database
+        ArrayList<String> daftarPostingan = ambilDataPostinganDariDatabase();
+
+        // Tampilkan data postingan dalam JLabel di dalam JPanel
+        for (String postingan : daftarPostingan) {
+            JLabel labelPostingan = new JLabel(postingan);
+            panelPosts.add(labelPostingan);
+        }
+
+        // Masukkan panelPosts ke dalam JScrollPane
+        JScrollPane scrollPane = new JScrollPane(panelPosts);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        // Tambahkan JScrollPane ke dalam JFrame
+        getContentPane().add(scrollPane);
+
+        pack();
+    }
+
+    // Metode untuk mengambil data postingan dari database (contoh sederhana)
+    private ArrayList<String> ambilDataPostinganDariDatabase() {
+        ArrayList<String> daftarPostingan = new ArrayList<>();
+
+        // Anda perlu menyesuaikan ini dengan koneksi dan query ke database yang Anda gunakan
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/nama_database", "username", "password");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT isi_postingan FROM tabel_postingan");
+
+            while (rs.next()) {
+                String isiPostingan = rs.getString("isi_postingan");
+                daftarPostingan.add(isiPostingan);
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return daftarPostingan;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,7 +81,7 @@ public class FormTimeline extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        panelPosts = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -36,6 +91,8 @@ public class FormTimeline extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +143,7 @@ public class FormTimeline extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(48, 48, 48)
                                 .addComponent(jLabel4)))))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(479, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,26 +164,52 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(jPanel1);
+        panelPosts.setViewportView(jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Form Timeline");
+        jLabel7.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(271, 271, 271))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel7)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(panelPosts, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelPosts, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,7 +259,9 @@ public class FormTimeline extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane panelPosts;
     // End of variables declaration//GEN-END:variables
 }
