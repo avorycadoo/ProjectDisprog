@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,6 +71,26 @@ public class user extends MyModel{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public Boolean checkLogin(String username, String password){
+        for(Object obj: viewListData()){
+            if(obj instanceof user){
+                user ob = ((user) obj);
+                if(ob.getUsername().equals(username) && ob.getPassword().equals(password)){
+//                    JOptionPane.showMessageDialog(this, "User is found.");
+//                    
+//                    FormTimeline timeline = new FormTimeline();
+//                    timeline.setVisible(true);
+//                    
+//                    help = 1;
+                    return true;
+//                    break;
+                    
+                }
+            }
+        }
+        return false;
     }
 
     @Override
