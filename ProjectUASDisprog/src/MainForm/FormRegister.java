@@ -196,8 +196,11 @@ public class FormRegister extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        if(txtUsername.getText() != "" || txtEmail.getText() != "" || txtPassword.getText() != "" || txtRePassword.getText() != ""){
-            if(txtPassword.getText() == txtRePassword.getText()){
+        if(txtUsername.getText().equals("") || txtEmail.getText().equals("") || txtPassword.getText().equals("") || txtRePassword.getText().equals("")){
+                    JOptionPane.showMessageDialog(this, "All data must be filled!!");
+        }
+        else{
+            if(txtPassword.getText().equals(txtRePassword.getText())){
                 u = new user(
                         txtUsername.getText(),
                         txtRePassword.getText(),
@@ -205,11 +208,15 @@ public class FormRegister extends javax.swing.JFrame {
                 );
                 u.insertData();
                 JOptionPane.showMessageDialog(this, "Registration successful.");
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Password must be same.");
+
             }
         }
-        else{
-            JOptionPane.showMessageDialog(this, "All data must be filled!!");
-        }
+        
+//        JOptionPane.showMessageDialog(this, "All data must be filled!!");
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

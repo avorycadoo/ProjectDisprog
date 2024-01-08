@@ -4,6 +4,10 @@
  */
 package MainForm;
 
+import javax.swing.JOptionPane;
+import newpackage.model.user;
+import Timeline.FormTimeline;
+
 /**
  *
  * @author Valerin
@@ -173,11 +177,39 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_cbShowPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        int help = 0;
+        
+        user u = new user();
+        
+        for(Object obj: u.viewListData()){
+            if(obj instanceof user){
+                user ob = ((user) obj);
+                if(ob.getUsername().equals(username) && ob.getPassword().equals(password)){
+                    JOptionPane.showMessageDialog(this, "User is found.");
+                    
+                    FormTimeline timeline = new FormTimeline();
+                    timeline.setVisible(true);
+                    
+                    help = 1;
+                    break;
+                    
+                }
+            }
+        }
+        if(help == 0){
+            JOptionPane.showMessageDialog(this, "User not found.");
+        }
+        
+        this.dispose();
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void lblRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseClicked
+        FormRegister regist = new FormRegister();
         
+        regist.setVisible(true);
     }//GEN-LAST:event_lblRegisterMouseClicked
 
     /**
