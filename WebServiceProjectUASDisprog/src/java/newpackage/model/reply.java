@@ -13,6 +13,14 @@ import java.util.ArrayList;
  */
 public class reply extends MyModel{
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -22,6 +30,7 @@ public class reply extends MyModel{
     }
     
     private String username;
+    private int user_id;
     private int post_id;
     private String reply;
     
@@ -33,6 +42,12 @@ public class reply extends MyModel{
     
     public reply(String username, int post_id, String reply){
         setUsername(username);
+        setPost_id(post_id);
+        setReply(reply);
+    }
+    
+    public reply(int user_id, int post_id, String reply){
+        setUser_id(user_id);
         setPost_id(post_id);
         setReply(reply);
     }
@@ -71,7 +86,19 @@ public class reply extends MyModel{
 
     @Override
     public void insertData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+                        "INSERT INTO reply(user_id, post_id, reply) VALUES (?, ?, ?)");
+                sql.setInt(1, this.user_id);
+                sql.setInt(2, this.post_id);
+                sql.setString(3, this.reply);
+                sql.executeUpdate();
+//                sql.close();
+            }
+        } catch (Exception x) {
+            System.out.println(x.getMessage());
+        }
     }
 
     @Override

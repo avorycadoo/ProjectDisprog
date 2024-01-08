@@ -34,6 +34,18 @@
 <message name="viewListAccountResponse">
 <part name="parameters" element="tns:viewListAccountResponse"/>
 </message>
+<message name="addReply">
+<part name="parameters" element="tns:addReply"/>
+</message>
+<message name="addReplyResponse">
+<part name="parameters" element="tns:addReplyResponse"/>
+</message>
+<message name="addPost">
+<part name="parameters" element="tns:addPost"/>
+</message>
+<message name="addPostResponse">
+<part name="parameters" element="tns:addPostResponse"/>
+</message>
 <portType name="WebServiceServer">
 <operation name="login">
 <input wsam:Action="http://model.newpackage/WebServiceServer/loginRequest" message="tns:login"/>
@@ -54,6 +66,14 @@
 <operation name="viewListAccount">
 <input wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountRequest" message="tns:viewListAccount"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountResponse" message="tns:viewListAccountResponse"/>
+</operation>
+<operation name="addReply">
+<input wsam:Action="http://model.newpackage/WebServiceServer/addReplyRequest" message="tns:addReply"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/addReplyResponse" message="tns:addReplyResponse"/>
+</operation>
+<operation name="addPost">
+<input wsam:Action="http://model.newpackage/WebServiceServer/addPostRequest" message="tns:addPost"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/addPostResponse" message="tns:addPostResponse"/>
 </operation>
 </portType>
 <binding name="WebServiceServerPortBinding" type="tns:WebServiceServer">
@@ -95,6 +115,24 @@
 </output>
 </operation>
 <operation name="viewListAccount">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="addReply">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="addPost">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

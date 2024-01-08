@@ -120,7 +120,9 @@ public class DetailPost extends javax.swing.JFrame {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
-        
+        String reply = txtKomen.getText();
+        addReply(3, 1, reply);
+        refresh();
     }//GEN-LAST:event_btnSendActionPerformed
 
     /**
@@ -172,6 +174,13 @@ public class DetailPost extends javax.swing.JFrame {
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.getChat(idPost);
     }
+
+    private static Boolean addReply(int userId, int postId, java.lang.String reply) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.addReply(userId, postId, reply);
+    }
+
 
 
    

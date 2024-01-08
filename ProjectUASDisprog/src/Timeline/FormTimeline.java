@@ -4,12 +4,14 @@
  */
 package Timeline;
 
+import BuatPost.BuatPost;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import newpackage.model.post;
@@ -24,12 +26,21 @@ public class FormTimeline extends javax.swing.JFrame {
     /**
      * Creates new form FormTimeline
      */
-    public FormTimeline() {
+    public FormTimeline(String id) {
+        
         initComponents();
+        
+        ids = id.split("-");
+        idu = ids[0];
+        
     }
 
+    static String idu;
+    String[] ids;
     
     private void Timeline() {
+        
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Timeline");
 
@@ -100,6 +111,8 @@ public class FormTimeline extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        btnTest = new javax.swing.JButton();
+        btnCreate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,10 +126,6 @@ public class FormTimeline extends javax.swing.JFrame {
 
         jLabel3.setText("Deskripsi");
         jLabel3.setEnabled(false);
-
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Kuliah\\Semeter 5\\Distrbuted Programming\\Project UAS\\ProjectDisprog\\Image\\like-putih.png")); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Kuliah\\Semeter 5\\Distrbuted Programming\\Project UAS\\ProjectDisprog\\Image\\komen.png")); // NOI18N
 
         jLabel5.setText("Jumlah_likes");
         jLabel5.setEnabled(false);
@@ -200,14 +209,30 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        btnTest.setText("jButton3");
+
+        btnCreate.setText("Create Post");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(panelPosts, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(panelPosts, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(btnTest)
+                        .addGap(98, 98, 98)
+                        .addComponent(btnCreate)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -216,11 +241,22 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelPosts, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTest)
+                    .addComponent(btnCreate))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+
+        BuatPost create = new BuatPost(idu);
+        create.setVisible(true);
+    }//GEN-LAST:event_btnCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,12 +288,14 @@ public class FormTimeline extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormTimeline().setVisible(true);
+                new FormTimeline(idu).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnTest;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.0 (wsit240-7e98ff4; 2017-08-03T21:19:54+0200) JAXWS-RI/2.3.0 JAXWS-API/2.3.0 JAXB-RI/2.3.0 JAXB-API/2.3.0 svn-revision#unknown. --><xs:schema xmlns:tns="http://model.newpackage/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://model.newpackage/">
 
+<xs:element name="addPost" type="tns:addPost"/>
+
+<xs:element name="addPostResponse" type="tns:addPostResponse"/>
+
+<xs:element name="addReply" type="tns:addReply"/>
+
+<xs:element name="addReplyResponse" type="tns:addReplyResponse"/>
+
 <xs:element name="getChat" type="tns:getChat"/>
 
 <xs:element name="getChatResponse" type="tns:getChatResponse"/>
@@ -29,7 +37,7 @@
 
 <xs:complexType name="loginResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -43,6 +51,20 @@
 <xs:complexType name="viewListAccountResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addPost">
+<xs:sequence>
+<xs:element name="judul" type="xs:string" minOccurs="0"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="user_pembuat" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addPostResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -68,6 +90,20 @@
 
 <xs:complexType name="registrasiResponse">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="addReply">
+<xs:sequence>
+<xs:element name="user_id" type="xs:int"/>
+<xs:element name="post_id" type="xs:int"/>
+<xs:element name="reply" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addReplyResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getChat">

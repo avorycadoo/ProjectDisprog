@@ -18,6 +18,7 @@ public class WebServiceServer {
 
     user user;
     reply reply;
+    post p;
     ArrayList<Object> listofuser;
 
     /**
@@ -32,16 +33,27 @@ public class WebServiceServer {
      * Web service operation
      */
     @WebMethod(operationName = "login")
-    public Boolean login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
+    public String login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
         user = new user(username, password);
         ArrayList<user> userList = user.checkLogin(); // Assuming checkLogin() returns an ArrayList<user>
 
         // Check if the userList contains any users
         if (!userList.isEmpty()) {
-            return true;
+            String stringUser = "";
+            for(Object obj: userList){
+                if(obj instanceof user){
+
+                    user r = ((user) obj);
+    //                reply newr = new reply(r.getUser_id(), r.getPost_id(), r.getReply());
+    //                listReply.add(newr);
+                    stringUser = r.getId()+ "-" + r.getUsername()+ "-" + r.getEmail();
+
+                }
+            }
+            return stringUser;
         } else {
-            return false;
+            return null;
         }
     }
 
@@ -94,8 +106,23 @@ public class WebServiceServer {
     @WebMethod(operationName = "addReply")
     public Boolean addReply(@WebParam(name = "user_id") int user_id, @WebParam(name = "post_id") int post_id, @WebParam(name = "reply") String reply) {
         //TODO write your implementation code here:
-        return null;
+        this.reply = new reply(user_id, post_id, reply);
+        this.reply.insertData();
+        return true;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addPost")
+    public Boolean addPost(@WebParam(name = "judul") String judul, @WebParam(name = "deskripsi") String deskripsi, @WebParam(name = "user_pembuat") int user_pembuat) {
+        //TODO write your implementation code here:
+        p = new post(judul, deskripsi, user_pembuat);
+        p.insertData();
+        return true;
+    }
+
+    
 
     
 

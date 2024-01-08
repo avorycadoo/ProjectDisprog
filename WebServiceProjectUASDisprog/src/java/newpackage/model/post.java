@@ -34,6 +34,12 @@ public class post extends MyModel{
         setCreated_date(created_date);
     }
     
+    public post(String judul, String deskripsi, int user_pembuat){
+        setJudul(judul);
+        setDeskripsi(deskripsi);
+        setUser_pembuat(user_pembuat);
+    }
+    
 
     public int getId() {
         return id;
@@ -95,7 +101,7 @@ public class post extends MyModel{
                 sql.setString(2, this.deskripsi);
                 sql.setInt(3, this.user_pembuat);
                 sql.executeUpdate();
-                sql.close();
+//                sql.close();
             }
         } catch (Exception x){
             System.out.println(x.getMessage());

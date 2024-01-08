@@ -4,6 +4,8 @@
  */
 package BuatPost;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Valerin
@@ -13,9 +15,15 @@ public class BuatPost extends javax.swing.JFrame {
     /**
      * Creates new form BuatPost
      */
-    public BuatPost() {
+    public BuatPost(String id) {
         initComponents();
+        idUser = id;
+        
+                JOptionPane.showMessageDialog(this, "Welcome " + idUser);
+
     }
+    
+    static String idUser;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,7 +124,12 @@ public class BuatPost extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        
+        String judul = txtJudul.getText();
+        String deskripsi = txtDeskripsi.getText();
+        addPost(judul, deskripsi, Integer.parseInt(idUser));
+        JOptionPane.showMessageDialog(this, "Create post success.");
+
+        this.dispose();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
@@ -149,7 +162,7 @@ public class BuatPost extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuatPost().setVisible(true);
+                new BuatPost(idUser).setVisible(true);
             }
         });
     }
@@ -163,4 +176,10 @@ public class BuatPost extends javax.swing.JFrame {
     private javax.swing.JTextField txtDeskripsi;
     private javax.swing.JTextField txtJudul;
     // End of variables declaration//GEN-END:variables
+
+    private static Boolean addPost(java.lang.String judul, java.lang.String deskripsi, int userPembuat) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.addPost(judul, deskripsi, userPembuat);
+    }
 }

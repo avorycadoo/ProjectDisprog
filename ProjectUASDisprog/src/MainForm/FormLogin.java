@@ -7,6 +7,7 @@ package MainForm;
 import javax.swing.JOptionPane;
 import newpackage.model.user;
 import Timeline.FormTimeline;
+import java.util.List;
 
 /**
  *
@@ -180,10 +181,12 @@ public class FormLogin extends javax.swing.JFrame {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         
-        login(username, password);
-        FormTimeline timeline = new FormTimeline();
+        String user = login(username, password);
+        String[] arr = user.split("-");
+        String iduser = arr[1];
+        FormTimeline timeline = new FormTimeline(user);
         timeline.setVisible(true);
-        JOptionPane.showMessageDialog(this, "Welcome " + username);
+        JOptionPane.showMessageDialog(this, "Welcome " + arr[0]);
         
         this.dispose();
         
@@ -244,9 +247,13 @@ public class FormLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
-    private static Boolean login(java.lang.String username, java.lang.String password) {
+    private static String login(java.lang.String username, java.lang.String password) {
         newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.login(username, password);
     }
+
+    
+
+   
 }
