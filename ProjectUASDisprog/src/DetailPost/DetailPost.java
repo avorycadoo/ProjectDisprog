@@ -4,6 +4,9 @@
  */
 package DetailPost;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Valerin
@@ -15,6 +18,18 @@ public class DetailPost extends javax.swing.JFrame {
      */
     public DetailPost() {
         initComponents();
+        refresh();
+    }
+    
+    public void refresh(){
+        List<String> listReply = getChat(1);
+        String komen = "";
+        for(String obj: listReply){
+            String[] arr = obj.split("-");
+            komen += arr[2] + "\nBy " + arr[0] + "\n\n";
+        }
+        
+        txtKomenArea.setText(komen);
     }
 
     /**
@@ -59,6 +74,7 @@ public class DetailPost extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        txtKomenArea.setEditable(false);
         txtKomenArea.setColumns(20);
         txtKomenArea.setRows(5);
         jScrollPane1.setViewportView(txtKomenArea);
@@ -140,4 +156,13 @@ public class DetailPost extends javax.swing.JFrame {
     private javax.swing.JTextField txtKomen;
     private javax.swing.JTextArea txtKomenArea;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<java.lang.String> getChat(int idPost) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.getChat(idPost);
+    }
+
+
+   
 }

@@ -17,6 +17,7 @@ import javax.jws.WebParam;
 public class WebServiceServer {
 
     user user;
+    reply reply;
     ArrayList<Object> listofuser;
 
     /**
@@ -67,9 +68,32 @@ public class WebServiceServer {
      * Web service operation
      */
     @WebMethod(operationName = "getChat")
-    public String getChat(@WebParam(name = "idPost") int idPost) {
+    public ArrayList<String> getChat(@WebParam(name = "idPost") int idPost) {
         //TODO write your implementation code here:
+        reply = new reply(idPost);
+        ArrayList<Object> list = reply.viewListData();
+        ArrayList<String> listReply = new ArrayList<>();
         
+        
+        for(Object obj: list){
+            if(obj instanceof reply){
+                
+                reply r = ((reply) obj);
+//                reply newr = new reply(r.getUser_id(), r.getPost_id(), r.getReply());
+//                listReply.add(newr);
+                listReply.add(r.getUsername() + "-" + r.getPost_id() + "-" + r.getReply());
+                
+            }
+        }
+        return listReply;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addReply")
+    public Boolean addReply(@WebParam(name = "user_id") int user_id, @WebParam(name = "post_id") int post_id, @WebParam(name = "reply") String reply) {
+        //TODO write your implementation code here:
         return null;
     }
 

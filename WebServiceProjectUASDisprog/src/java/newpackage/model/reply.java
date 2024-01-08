@@ -12,34 +12,33 @@ import java.util.ArrayList;
  * @author Asus
  */
 public class reply extends MyModel{
-    private int user_id;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    private String username;
     private int post_id;
     private String reply;
     
     public reply(){
-        this.user_id = 0;
+        this.username = null;
         this.post_id = 0;
         this.reply = null;
     }
     
-    public reply(int user_id, int post_id, String reply){
-        setUser_id(user_id);
+    public reply(String username, int post_id, String reply){
+        setUsername(username);
         setPost_id(post_id);
         setReply(reply);
     }
-
-    /**
-     * @return the user_id
-     */
-    public int getUser_id() {
-        return user_id;
-    }
-
-    /**
-     * @param user_id the user_id to set
-     */
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    
+    public reply(int post_id){
+        setPost_id(post_id);
     }
 
     /**
@@ -90,13 +89,13 @@ public class reply extends MyModel{
         ArrayList<Object> collections = new ArrayList<>();
         try {
             PreparedStatement sql = MyModel.conn.prepareStatement(
-                    "SELECT * FROM reply WHERE post_id = ?");
+                    "SELECT u.username as username, r.post_id, r.reply FROM reply r INNER JOIN user u ON r.user_id = u.id  WHERE post_id = ?");
             sql.setInt(1, this.post_id);
             this.result = sql.executeQuery();
 
             while (this.result.next()) {
                 reply tmpReply = new reply(
-                        this.result.getInt("user_id"),
+                        this.result.getString("username"),
                         this.result.getInt("post_id"),
                         this.result.getString("reply")
                 );
