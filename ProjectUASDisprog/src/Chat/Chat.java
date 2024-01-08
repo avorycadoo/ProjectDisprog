@@ -16,11 +16,10 @@ import java.util.logging.Logger;
  *
  * @author Valerin
  */
-<<<<<<< Updated upstream
-public class Chat extends javax.swing.JFrame {
-=======
+
+
 public class Chat extends javax.swing.JFrame implements Runnable {
->>>>>>> Stashed changes
+
 
     public String emailLogin;
     Socket clientSocket;
@@ -42,7 +41,7 @@ public class Chat extends javax.swing.JFrame implements Runnable {
 //            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }
-<<<<<<< Updated upstream
+
     
 //    public void listAcc() {
 //        String res = viewListAccount("", "");
@@ -61,7 +60,7 @@ public class Chat extends javax.swing.JFrame implements Runnable {
 //        bmi_application.BMIWebService port = service.getBMIWebServicePort();
 //        return port.viewListAccount(email, password);
 //    }
-=======
+
 
     public void listAcc() {
         String res = viewListAccount("", "");
@@ -84,7 +83,6 @@ public class Chat extends javax.swing.JFrame implements Runnable {
             }
         }
     }
->>>>>>> Stashed changes
 
     /**
      * This method is called from within the constructor to initialize the form.
