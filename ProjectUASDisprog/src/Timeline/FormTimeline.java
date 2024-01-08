@@ -4,10 +4,16 @@
  */
 package Timeline;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import newpackage.model.post;
+
 
 /**
  *
@@ -23,7 +29,7 @@ public class FormTimeline extends javax.swing.JFrame {
     }
 
     
-    private void initComponents() {
+    private void Timeline() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Timeline");
 
@@ -56,18 +62,19 @@ public class FormTimeline extends javax.swing.JFrame {
 
         // Anda perlu menyesuaikan ini dengan koneksi dan query ke database yang Anda gunakan
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/nama_database", "username", "password");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT isi_postingan FROM tabel_postingan");
+            
+//            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/nama_database", "username", "password");
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT isi_postingan FROM tabel_postingan");
 
-            while (rs.next()) {
-                String isiPostingan = rs.getString("isi_postingan");
-                daftarPostingan.add(isiPostingan);
-            }
-
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+//            while (rs.next()) {
+//                String isiPostingan = rs.getString("isi_postingan");
+//                daftarPostingan.add(isiPostingan);
+//            }
+//
+//            conn.close();
+        } catch (Exception e) {
+            Logger.getLogger(FormTimeline.class.getName()).log(Level.SEVERE, null, e);
         }
 
         return daftarPostingan;
