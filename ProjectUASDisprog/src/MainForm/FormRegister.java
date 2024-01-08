@@ -202,12 +202,7 @@ public class FormRegister extends javax.swing.JFrame {
         }
         else{
             if(txtPassword.getText().equals(txtRePassword.getText())){
-                u = new user(
-                        txtUsername.getText(),
-                        txtRePassword.getText(),
-                        txtEmail.getText()
-                );
-                u.insertData();
+                registrasi(txtUsername.getText(), txtRePassword.getText(), txtEmail.getText());
                 JOptionPane.showMessageDialog(this, "Registration successful.");
                 this.dispose();
             }

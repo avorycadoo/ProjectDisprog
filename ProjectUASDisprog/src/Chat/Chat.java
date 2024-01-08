@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Valerin
  */
-public class Chat extends javax.swing.JFrame implements Runnable{
+public class Chat extends javax.swing.JFrame {
 
     public String emailLogin;
     Socket clientSocket;
@@ -23,36 +23,36 @@ public class Chat extends javax.swing.JFrame implements Runnable{
      * Creates new form Chat
      */
     public Chat() {
-        try {
-            initComponents();
-
-            clientSocket = new Socket("localhost", 6000); //krn masih di komputer yg sama makanya localhost, port 6000
-            if (t == null) {
-                t = new Thread(this, "client");
-                t.start();
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            initComponents();
+//
+//            clientSocket = new Socket("localhost", 6000); //krn masih di komputer yg sama makanya localhost, port 6000
+//            if (t == null) {
+//                t = new Thread(this, "client");
+//                t.start();
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
-    public void listAcc() {
-        String res = viewListAccount("", "");
-        res = res.substring(1);
-        res = res.replace("]", "");
-        String[] splitRes = res.split(", ");
-        for (String acc : splitRes) {
-            String[] i = acc.split("-");
-            cmbDaftarAcc.addItem(i[2]);
-        }
-        cmbDaftarAcc.removeItem(emailLogin);
-    }
-    
-    private static String viewListAccount(java.lang.String email, java.lang.String password) {
-        ProjectDisprog.BMIWebService_Service service = new bmi_application.BMIWebService_Service();
-        bmi_application.BMIWebService port = service.getBMIWebServicePort();
-        return port.viewListAccount(email, password);
-    }
+//    public void listAcc() {
+//        String res = viewListAccount("", "");
+//        res = res.substring(1);
+//        res = res.replace("]", "");
+//        String[] splitRes = res.split(", ");
+//        for (String acc : splitRes) {
+//            String[] i = acc.split("-");
+//            cmbDaftarAcc.addItem(i[2]);
+//        }
+//        cmbDaftarAcc.removeItem(emailLogin);
+//    }
+//    
+//    private static String viewListAccount(java.lang.String email, java.lang.String password) {
+//        ProjectDisprog.BMIWebService_Service service = new bmi_application.BMIWebService_Service();
+//        bmi_application.BMIWebService port = service.getBMIWebServicePort();
+//        return port.viewListAccount(email, password);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
