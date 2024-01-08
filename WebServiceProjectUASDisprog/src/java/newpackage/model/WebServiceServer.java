@@ -31,17 +31,27 @@ public class WebServiceServer {
      * Web service operation
      */
     @WebMethod(operationName = "login")
-    public String login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
+    public Boolean login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
         user = new user(username, password);
         ArrayList<user> userList = user.checkLogin(); // Assuming checkLogin() returns an ArrayList<user>
 
         // Check if the userList contains any users
         if (!userList.isEmpty()) {
-            return "Login successful";
+            return true;
         } else {
-            return "Invalid username or password";
+            return false;
         }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "registrasi")
+    public void registrasi(@WebParam(name = "username") String username, @WebParam(name = "password") String password, @WebParam(name = "email") String email) {
+        //TODO write your implementation code here:
+        user = new user(username, password, email);
+        user.insertData();
     }
 
 }

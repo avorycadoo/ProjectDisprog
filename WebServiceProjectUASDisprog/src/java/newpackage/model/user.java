@@ -39,6 +39,12 @@ public class user extends MyModel {
         setUsername(username);
         setPassword(password);
     }
+    
+    public user(String username, String password, String email){
+        setUsername(username);
+        setPassword(password);
+        setEmail(email);
+    }
 
     public Timestamp getCreated_date() {
         return created_date;
