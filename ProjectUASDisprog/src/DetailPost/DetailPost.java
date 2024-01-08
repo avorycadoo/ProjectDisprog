@@ -29,7 +29,7 @@ public class DetailPost extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtChat = new javax.swing.JTextArea();
+        txtKomenArea = new javax.swing.JTextArea();
         txtKomen = new javax.swing.JTextField();
         btnSend = new javax.swing.JButton();
 
@@ -59,9 +59,9 @@ public class DetailPost extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        txtChat.setColumns(20);
-        txtChat.setRows(5);
-        jScrollPane1.setViewportView(txtChat);
+        txtKomenArea.setColumns(20);
+        txtKomenArea.setRows(5);
+        jScrollPane1.setViewportView(txtKomenArea);
 
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSend.setText("Send");
@@ -137,7 +137,7 @@ public class DetailPost extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtChat;
     private javax.swing.JTextField txtKomen;
+    private javax.swing.JTextArea txtKomenArea;
     // End of variables declaration//GEN-END:variables
 }
