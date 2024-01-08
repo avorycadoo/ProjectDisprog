@@ -4,11 +4,15 @@
  */
 package MainForm;
 
+import javax.swing.JOptionPane;
+import newpackage.model.user;
+
 /**
  *
  * @author Valerin
  */
 public class FormRegister extends javax.swing.JFrame {
+    user u;
 
     /**
      * Creates new form FormRegister
@@ -192,7 +196,20 @@ public class FormRegister extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        
+        if(txtUsername.getText() != "" || txtEmail.getText() != "" || txtPassword.getText() != "" || txtRePassword.getText() != ""){
+            if(txtPassword.getText() == txtRePassword.getText()){
+                u = new user(
+                        txtUsername.getText(),
+                        txtRePassword.getText(),
+                        txtEmail.getText()
+                );
+                u.insertData();
+                JOptionPane.showMessageDialog(this, "Registration successful.");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "All data must be filled!!");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
