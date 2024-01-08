@@ -4,8 +4,10 @@
  */
 package Chat;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +16,16 @@ import java.util.logging.Logger;
  *
  * @author Valerin
  */
+<<<<<<< Updated upstream
 public class Chat extends javax.swing.JFrame {
+=======
+public class Chat extends javax.swing.JFrame implements Runnable {
+>>>>>>> Stashed changes
 
     public String emailLogin;
     Socket clientSocket;
     Thread t;
+
     /**
      * Creates new form Chat
      */
@@ -35,6 +42,7 @@ public class Chat extends javax.swing.JFrame {
 //            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }
+<<<<<<< Updated upstream
     
 //    public void listAcc() {
 //        String res = viewListAccount("", "");
@@ -53,6 +61,30 @@ public class Chat extends javax.swing.JFrame {
 //        bmi_application.BMIWebService port = service.getBMIWebServicePort();
 //        return port.viewListAccount(email, password);
 //    }
+=======
+
+    public void listAcc() {
+        String res = viewListAccount("", "");
+        res = res.substring(1);
+        res = res.replace("]", "");
+        String[] splitRes = res.split(", ");
+        for (String acc : splitRes) {
+            String[] i = acc.split("-");
+            cmbDaftarAcc.addItem(i[2]);
+        }
+        cmbDaftarAcc.removeItem(emailLogin);
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                getMessage();
+            } catch (IOException x) {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, x);
+            }
+        }
+    }
+>>>>>>> Stashed changes
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +98,7 @@ public class Chat extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtChatArea = new javax.swing.JTextArea();
+        txtHistory = new javax.swing.JTextArea();
         txtChat = new javax.swing.JTextField();
         btnReply = new javax.swing.JButton();
         cmbDaftarAcc = new javax.swing.JComboBox<>();
@@ -98,9 +130,9 @@ public class Chat extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        txtChatArea.setColumns(20);
-        txtChatArea.setRows(5);
-        jScrollPane1.setViewportView(txtChatArea);
+        txtHistory.setColumns(20);
+        txtHistory.setRows(5);
+        jScrollPane1.setViewportView(txtHistory);
 
         btnReply.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnReply.setText("Reply");
@@ -209,6 +241,23 @@ public class Chat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtChat;
-    private javax.swing.JTextArea txtChatArea;
+    private javax.swing.JTextArea txtHistory;
     // End of variables declaration//GEN-END:variables
+
+    private static String viewListAccount(java.lang.String username, java.lang.String password) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.viewListAccount(username, password);
+    }
+
+    private void getMessage() throws IOException {
+        String chatServer;
+        BufferedReader chatFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        chatServer = chatFromServer.readLine(); //membaca pesan dari server
+
+        String[] cek = chatServer.split(":");
+
+        txtHistory.append(chatServer + "\n"); //pesan taruh di textArea
+
+    }
 }

@@ -54,4 +54,15 @@ public class WebServiceServer {
         user.insertData();
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "viewListAccount")
+    public String viewListAccount(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
+        //TODO write your implementation code here:
+        return null;
+    }
+
+    
+
 }

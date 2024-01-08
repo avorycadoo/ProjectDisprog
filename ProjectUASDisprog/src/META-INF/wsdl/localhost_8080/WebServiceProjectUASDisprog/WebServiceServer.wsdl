@@ -4,6 +4,12 @@
 <xsd:import namespace="http://model.newpackage/" schemaLocation="http://localhost:8080/WebServiceProjectUASDisprog/WebServiceServer?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="registrasi">
+<part name="parameters" element="tns:registrasi"/>
+</message>
+<message name="registrasiResponse">
+<part name="parameters" element="tns:registrasiResponse"/>
+</message>
 <message name="login">
 <part name="parameters" element="tns:login"/>
 </message>
@@ -16,13 +22,17 @@
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
-<message name="registrasi">
-<part name="parameters" element="tns:registrasi"/>
+<message name="viewListAccount">
+<part name="parameters" element="tns:viewListAccount"/>
 </message>
-<message name="registrasiResponse">
-<part name="parameters" element="tns:registrasiResponse"/>
+<message name="viewListAccountResponse">
+<part name="parameters" element="tns:viewListAccountResponse"/>
 </message>
 <portType name="WebServiceServer">
+<operation name="registrasi">
+<input wsam:Action="http://model.newpackage/WebServiceServer/registrasiRequest" message="tns:registrasi"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/registrasiResponse" message="tns:registrasiResponse"/>
+</operation>
 <operation name="login">
 <input wsam:Action="http://model.newpackage/WebServiceServer/loginRequest" message="tns:login"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/loginResponse" message="tns:loginResponse"/>
@@ -31,13 +41,22 @@
 <input wsam:Action="http://model.newpackage/WebServiceServer/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/helloResponse" message="tns:helloResponse"/>
 </operation>
-<operation name="registrasi">
-<input wsam:Action="http://model.newpackage/WebServiceServer/registrasiRequest" message="tns:registrasi"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/registrasiResponse" message="tns:registrasiResponse"/>
+<operation name="viewListAccount">
+<input wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountRequest" message="tns:viewListAccount"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountResponse" message="tns:viewListAccountResponse"/>
 </operation>
 </portType>
 <binding name="WebServiceServerPortBinding" type="tns:WebServiceServer">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="registrasi">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="login">
 <soap:operation soapAction=""/>
 <input>
@@ -56,7 +75,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="registrasi">
+<operation name="viewListAccount">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
