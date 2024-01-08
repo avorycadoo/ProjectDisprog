@@ -18,6 +18,7 @@ public class WebServiceServer {
 
     user user;
     ArrayList<Object> listofuser;
+
     /**
      * This is a sample web service operation
      */
@@ -30,9 +31,17 @@ public class WebServiceServer {
      * Web service operation
      */
     @WebMethod(operationName = "login")
-    public Boolean login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
+    public String login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        user = new user();
-        return user.checkLogin(username, password);
+        user = new user(username, password);
+        ArrayList<user> userList = user.checkLogin(); // Assuming checkLogin() returns an ArrayList<user>
+
+        // Check if the userList contains any users
+        if (!userList.isEmpty()) {
+            return "Login successful";
+        } else {
+            return "Invalid username or password";
+        }
     }
+
 }

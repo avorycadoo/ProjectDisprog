@@ -14,23 +14,30 @@ import javax.swing.JOptionPane;
  *
  * @author satya
  */
-public class user extends MyModel{
+public class user extends MyModel {
+
     private int id;
     private String username;
     private String password;
     private String email;
     private Timestamp created_date;
-    
+
     public user() {
         this.username = null;
         this.password = null;
         this.email = null;
     }
-    
-    public user(String username, String password, String email){
+
+    public user(int id, String username, String password, String email) {
+        setId(id);
         setUsername(username);
         setPassword(password);
         setEmail(email);
+    }
+
+    public user(String username, String password) {
+        setUsername(username);
+        setPassword(password);
     }
 
     public Timestamp getCreated_date() {
@@ -72,33 +79,70 @@ public class user extends MyModel{
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public Boolean checkLogin(String username, String password){
-        Boolean cek = false;
-        for(Object obj: viewListData()){
-            if(obj instanceof user){
-                user ob = ((user) obj);
-                if(ob.getUsername().equals(username) && ob.getPassword().equals(password)){
-                    cek = true;
-                }
+
+    public ArrayList<user> checkLogin() {
+        ArrayList<user> collections = new ArrayList<>();
+        try {
+            PreparedStatement sql = MyModel.conn.prepareStatement(
+                    "SELECT * FROM user WHERE username = ? AND password = ?");
+            sql.setString(1, this.username);
+            sql.setString(2, this.password);
+            this.result = sql.executeQuery();
+
+            while (this.result.next()) {
+                user tmpUser = new user(
+                        this.result.getInt("id"),
+                        this.result.getString("username"),
+                        this.result.getString("password"),
+                        this.result.getString("email")
+                );
+
+                collections.add(tmpUser);
             }
+        } catch (Exception e) {
+            e.printStackTrace(); // Log or handle the exception appropriately
         }
-        return cek;
+
+        return collections;
     }
 
+//    public ArrayList<user> checkLogin() {
+//        ArrayList<user> collections = new ArrayList<user>();
+//        try {
+//            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+//                    "SELECT * FROM user WHERE username = ? AND password = ?");
+//            sql.setString(1, this.username);
+//            sql.setString(2, this.password);
+//            this.result = sql.executeQuery();
+//            while (this.result.next()) {
+//                user tmpUser = new user(
+//                        this.result.getInt("id"),
+//                        this.result.getString("username"),
+//                        this.result.getString("password"),
+//                        this.result.getString("email")
+//                );
+//
+//                collections.add(tmpUser);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return collections;
+//    }
     @Override
     public void insertData() {
-        try{
-            if(!MyModel.conn.isClosed()){
+        try {
+            if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                "INSERT INTO user(username, password, email) VALUES (?, ?, ?)");
+                        "INSERT INTO user(username, password, email) VALUES (?, ?, ?)");
                 sql.setString(1, this.username);
                 sql.setString(2, this.password);
                 sql.setString(3, this.email);
                 sql.executeUpdate();
 //                sql.close();
             }
-        } catch (Exception x){
+        } catch (Exception x) {
             System.out.println(x.getMessage());
         }
     }
@@ -117,21 +161,25 @@ public class user extends MyModel{
     public ArrayList<Object> viewListData() {
         ArrayList<Object> collections = new ArrayList<>();
         try {
-            this.statement = (Statement) MyModel.conn.createStatement();
-            this.result = this.statement.executeQuery("SELECT * FROM user");
-            while(this.result.next()){
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+                    "SELECT * FROM user WHERE username = ? AND password = ?");
+            sql.setString(1, this.username);
+            sql.setString(2, this.password);
+            this.result = sql.executeQuery();
+            while (this.result.next()) {
                 user tmpUser = new user(
+                        this.result.getInt("id"),
                         this.result.getString("username"),
                         this.result.getString("password"),
                         this.result.getString("email")
                 );
-                
+
                 collections.add(tmpUser);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
         return collections;
     }
 }
