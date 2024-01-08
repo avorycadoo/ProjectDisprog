@@ -32,7 +32,7 @@ public class WebServiceServer {
     @WebMethod(operationName = "login")
     public Boolean login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        
+        user = new user();
         return user.checkLogin(username, password);
     }
 }

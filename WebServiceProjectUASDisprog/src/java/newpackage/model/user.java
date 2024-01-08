@@ -74,23 +74,16 @@ public class user extends MyModel{
     }
     
     public Boolean checkLogin(String username, String password){
+        Boolean cek = false;
         for(Object obj: viewListData()){
             if(obj instanceof user){
                 user ob = ((user) obj);
                 if(ob.getUsername().equals(username) && ob.getPassword().equals(password)){
-//                    JOptionPane.showMessageDialog(this, "User is found.");
-//                    
-//                    FormTimeline timeline = new FormTimeline();
-//                    timeline.setVisible(true);
-//                    
-//                    help = 1;
-                    return true;
-//                    break;
-                    
+                    cek = true;
                 }
             }
         }
-        return false;
+        return cek;
     }
 
     @Override
