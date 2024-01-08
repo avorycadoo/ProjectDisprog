@@ -81,6 +81,11 @@ public class DetailPost extends javax.swing.JFrame {
 
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSend.setText("Send");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,6 +117,11 @@ public class DetailPost extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSendActionPerformed
 
     /**
      * @param args the command line arguments
