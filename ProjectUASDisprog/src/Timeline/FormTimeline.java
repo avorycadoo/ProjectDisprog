@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import newpackage.model.post;
-
+import DetailPost.DetailPost;
+import java.util.List;
 
 /**
  *
@@ -27,69 +28,75 @@ public class FormTimeline extends javax.swing.JFrame {
      * Creates new form FormTimeline
      */
     public FormTimeline(String id) {
-        
+
         initComponents();
-        
+
         ids = id.split("-");
         idu = ids[0];
-        
+        refresh(idu);
+
     }
 
     static String idu;
     String[] ids;
-    
-    private void Timeline() {
-        
-        
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Timeline");
 
-        // Inisialisasi komponen utama
-        JPanel panelPosts = new JPanel();
-        panelPosts.setLayout(new BoxLayout(panelPosts, BoxLayout.Y_AXIS));
+//    private void Timeline() {
+//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+//        setTitle("Timeline");
+//        // Inisialisasi komponen utama
+//        JPanel panelPosts = new JPanel();
+//        panelPosts.setLayout(new BoxLayout(panelPosts, BoxLayout.Y_AXIS));
+//        // Ambil data postingan dari database
+//        ArrayList<String> daftarPostingan = ambilDataPostinganDariDatabase();
+//        // Tampilkan data postingan dalam JLabel di dalam JPanel
+//        for (String postingan : daftarPostingan) {
+//            JLabel labelPostingan = new JLabel(postingan);
+//            panelPosts.add(labelPostingan);
+//        }
+//        // Masukkan panelPosts ke dalam JScrollPane
+//        JScrollPane scrollPane = new JScrollPane(panelPosts);
+//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        // Tambahkan JScrollPane ke dalam JFrame
+//        getContentPane().add(scrollPane);
+//        pack();
+//    }
 
-        // Ambil data postingan dari database
-        ArrayList<String> daftarPostingan = ambilDataPostinganDariDatabase();
-
-        // Tampilkan data postingan dalam JLabel di dalam JPanel
-        for (String postingan : daftarPostingan) {
-            JLabel labelPostingan = new JLabel(postingan);
-            panelPosts.add(labelPostingan);
+    public void refresh(String Id) {
+        List<String> listPost = viewListPost();
+        String komen = "";
+        for (String obj : listPost) {
+            String[] arr = obj.split("-");
+            if(Id.equals(arr[0])){
+                lblUsername.setText(ids[1]);
+            }
+            lblJudul.setText(arr[1]);
+            lblDeskripsi.setText(arr[2]);
+            lblCreated_at.setText(arr[3]);
         }
-
-        // Masukkan panelPosts ke dalam JScrollPane
-        JScrollPane scrollPane = new JScrollPane(panelPosts);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-        // Tambahkan JScrollPane ke dalam JFrame
-        getContentPane().add(scrollPane);
-
-        pack();
+//        txtKomenArea.setText(komen);
     }
 
     // Metode untuk mengambil data postingan dari database (contoh sederhana)
-    private ArrayList<String> ambilDataPostinganDariDatabase() {
-        ArrayList<String> daftarPostingan = new ArrayList<>();
-
-        // Anda perlu menyesuaikan ini dengan koneksi dan query ke database yang Anda gunakan
-        try {
-            
+//    private ArrayList<String> ambilDataPostinganDariDatabase() {
+//        ArrayList<String> daftarPostingan = new ArrayList<>();
+//        // Anda perlu menyesuaikan ini dengan koneksi dan query ke database yang Anda gunakan
+//        try {
+//
 //            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/nama_database", "username", "password");
 //            Statement stmt = conn.createStatement();
 //            ResultSet rs = stmt.executeQuery("SELECT isi_postingan FROM tabel_postingan");
-
 //            while (rs.next()) {
 //                String isiPostingan = rs.getString("isi_postingan");
 //                daftarPostingan.add(isiPostingan);
 //            }
 //
 //            conn.close();
-        } catch (Exception e) {
-            Logger.getLogger(FormTimeline.class.getName()).log(Level.SEVERE, null, e);
-        }
+//        } catch (Exception e) {
+//            Logger.getLogger(FormTimeline.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//        return daftarPostingan;
+//    }
 
-        return daftarPostingan;
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,37 +108,44 @@ public class FormTimeline extends javax.swing.JFrame {
 
         panelPosts = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblCreated_at = new javax.swing.JLabel();
+        lblJudul = new javax.swing.JLabel();
+        lblDeskripsi = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnDetail = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        btnTest = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Username");
+        lblUsername.setText("Username");
 
-        jLabel4.setText("Created_at");
-        jLabel4.setEnabled(false);
+        lblCreated_at.setText("Created_at");
+        lblCreated_at.setEnabled(false);
 
-        jLabel2.setText("Judul");
-        jLabel2.setEnabled(false);
+        lblJudul.setText("Judul");
+        lblJudul.setEnabled(false);
 
-        jLabel3.setText("Deskripsi");
-        jLabel3.setEnabled(false);
+        lblDeskripsi.setText("Deskripsi");
+        lblDeskripsi.setEnabled(false);
 
         jLabel5.setText("Jumlah_likes");
         jLabel5.setEnabled(false);
 
         jLabel6.setText("Jumlah_komen");
         jLabel6.setEnabled(false);
+
+        btnDetail.setText("Detail");
+        btnDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,8 +156,8 @@ public class FormTimeline extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,9 +170,10 @@ public class FormTimeline extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(lblUsername)
                                 .addGap(48, 48, 48)
-                                .addComponent(jLabel4)))))
+                                .addComponent(lblCreated_at))
+                            .addComponent(btnDetail))))
                 .addContainerGap(479, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -166,12 +181,12 @@ public class FormTimeline extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(lblUsername)
+                    .addComponent(lblCreated_at))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(lblJudul)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lblDeskripsi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -180,7 +195,9 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnDetail)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         panelPosts.setViewportView(jPanel1);
@@ -209,8 +226,6 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        btnTest.setText("jButton3");
-
         btnCreate.setText("Create Post");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,9 +244,7 @@ public class FormTimeline extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(panelPosts, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(btnTest)
-                        .addGap(98, 98, 98)
+                        .addGap(373, 373, 373)
                         .addComponent(btnCreate)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -242,9 +255,7 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(panelPosts, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTest)
-                    .addComponent(btnCreate))
+                .addComponent(btnCreate)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -257,6 +268,12 @@ public class FormTimeline extends javax.swing.JFrame {
         BuatPost create = new BuatPost(idu);
         create.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
+        // TODO add your handling code here:
+        DetailPost detailPost = new DetailPost();
+        detailPost.setVisible(true);
+    }//GEN-LAST:event_btnDetailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,18 +312,24 @@ public class FormTimeline extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnTest;
+    private javax.swing.JButton btnDetail;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblCreated_at;
+    private javax.swing.JLabel lblDeskripsi;
+    private javax.swing.JLabel lblJudul;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JScrollPane panelPosts;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<java.lang.String> viewListPost() {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.viewListPost();
+    }
 }
