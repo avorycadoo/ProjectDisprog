@@ -110,12 +110,34 @@ public class post extends MyModel{
 
     @Override
     public void updateDate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            if(!MyModel.conn.isClosed()){
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+                "UPDATE post(judul, deskripsi, user_pembuat) VALUES (?, ?, ?)");
+                sql.setString(1, this.judul);
+                sql.setString(2, this.deskripsi);
+                sql.setInt(3, this.user_pembuat);
+                sql.executeUpdate();
+                sql.close();
+            }
+        } catch (Exception x){
+            System.out.println(x.getMessage());
+        }
     }
 
     @Override
     public void deleteData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            if (!MyModel.conn.isClosed()) { //jika tidak tertutup
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("DELETE FROM user WHERE id = ?");
+                sql.setInt(1, id);
+
+                sql.executeUpdate();
+                sql.close();
+            } //PreparedStatement adalah handling dari java
+        } catch (Exception e) {
+            System.out.println("Error di delete = " + e);
+        }
     }
 
     @Override

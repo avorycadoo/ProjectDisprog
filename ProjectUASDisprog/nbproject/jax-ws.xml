@@ -3,9 +3,9 @@
   <services/>
   <clients>
     <client name="WebServiceServer">
-      <wsdl-url>http://localhost:8080/WebServiceProjectUASDisprog/WebServiceServer?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/WebServiceProjectUASDisprog/WebServiceServer.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">newpackage.model</package-name>
+      <wsdl-url>http://localhost:8181/WebServiceProjectUASDisprog/WebServiceServer?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8181/WebServiceProjectUASDisprog/WebServiceServer.wsdl</local-wsdl-file>
+      <package-name>newpackage.model</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/WebServiceProjectUASDisprog/WebServiceServer?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8181/WebServiceProjectUASDisprog/WebServiceServer?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -31,10 +31,6 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>newpackage.model</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

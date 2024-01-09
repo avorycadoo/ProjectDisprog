@@ -4,19 +4,39 @@
  */
 package UbahPost;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import newpackage.model.post;
+
 /**
  *
  * @author Valerin
  */
 public class UbahPost extends javax.swing.JFrame {
 
+    static String idUser;
+    post p;
     /**
      * Creates new form UbahPost
      */
-    public UbahPost() {
+    public UbahPost(String id) {
         initComponents();
+        idUser = id;
+//        oldData();
     }
 
+//    public void oldData(){
+//        Object[] rowData = new Object[2];
+//        ArrayList<Object> objectPost = p.viewListData();
+//
+//        for (Object object : objectPost) {
+//            if (object instanceof post) {
+//                post obj = (post) object;
+//                rowData[0] = obj.getJudul();
+//                rowData[1] = obj.getDeskripsi();
+//            }
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,7 +136,12 @@ public class UbahPost extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        
+        String judul = txtJudul.getText();
+        String deskripsi = txtDeskripsi.getText();
+        ubahPost(judul, deskripsi, Integer.parseInt(idUser));
+        JOptionPane.showMessageDialog(this, "Change post success.");
+
+        this.dispose();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
@@ -149,7 +174,7 @@ public class UbahPost extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UbahPost().setVisible(true);
+                new UbahPost(idUser).setVisible(true);
             }
         });
     }
@@ -163,4 +188,10 @@ public class UbahPost extends javax.swing.JFrame {
     private javax.swing.JTextField txtDeskripsi;
     private javax.swing.JTextField txtJudul;
     // End of variables declaration//GEN-END:variables
+
+    private static Boolean ubahPost(java.lang.String judul, java.lang.String deskripsi, int userPembuat) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.ubahPost(judul, deskripsi, userPembuat);
+    }
 }

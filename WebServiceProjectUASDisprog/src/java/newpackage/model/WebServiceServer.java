@@ -122,6 +122,15 @@ public class WebServiceServer {
         return true;
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ubahPost")
+    public Boolean ubahPost(@WebParam(name = "judul") String judul, @WebParam(name = "deskripsi") String deskripsi, @WebParam(name = "userPembuat") int userPembuat) {
+        //TODO write your implementation code here:
+        return null;
+    }
+
     
 
     

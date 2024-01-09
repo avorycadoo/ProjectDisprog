@@ -252,8 +252,4 @@ public class FormLogin extends javax.swing.JFrame {
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.login(username, password);
     }
-
-    
-
-   
 }

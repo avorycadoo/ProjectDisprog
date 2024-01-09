@@ -19,7 +19,7 @@ public class BuatPost extends javax.swing.JFrame {
         initComponents();
         idUser = id;
         
-                JOptionPane.showMessageDialog(this, "Welcome " + idUser);
+        JOptionPane.showMessageDialog(this, "Welcome " + idUser);
 
     }
     
