@@ -170,31 +170,35 @@ public class FormLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void cbShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPasswordActionPerformed
-        
+        if (cbShowPassword.isSelected()) {
+            txtPassword.setEchoChar((char) 0);
+        } else {
+            txtPassword.setEchoChar('*');
+        }
     }//GEN-LAST:event_cbShowPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        
+
         String user = login(username, password);
         String[] arr = user.split("-");
-        String iduser = arr[1];
-        FormTimeline timeline = new FormTimeline(user);
-        timeline.setVisible(true);
-        JOptionPane.showMessageDialog(this, "Welcome " + arr[0]);
-        
+        String iduser = arr[0];
+        JOptionPane.showMessageDialog(this, "Welcome " + arr[1]);
         this.dispose();
-        
+        FormTimeline timeline = new FormTimeline(iduser);
+        timeline.setVisible(true);
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void lblRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseClicked
         FormRegister regist = new FormRegister();
-        
+
         regist.setVisible(true);
     }//GEN-LAST:event_lblRegisterMouseClicked
 
