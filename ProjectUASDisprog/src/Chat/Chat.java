@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,10 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Valerin
  */
-
-
 public class Chat extends javax.swing.JFrame implements Runnable {
-
 
     public String usernameLogin;
     Socket clientSocket;
@@ -43,15 +41,19 @@ public class Chat extends javax.swing.JFrame implements Runnable {
     }
 
     public void listAcc() {
-        String res = viewListAccount_1("", "");
+        String res = viewListAccount("", "");
         res = res.substring(1);
         res = res.replace("]", "");
         String[] splitRes = res.split(", ");
+
+        cmbDaftarAcc.removeAllItems(); // Clear existing items before adding new ones
+
         for (String acc : splitRes) {
             String[] i = acc.split("-");
-            cmbDaftarAcc.addItem(i[2]);
+            String username = i[2];
+            cmbDaftarAcc.addItem(username);
         }
-        cmbDaftarAcc.removeItem(usernameLogin);
+        cmbDaftarAcc.removeItem(usernameLogin); // Assuming this is the logged-in user's username
     }
 
     public void run() {
@@ -222,7 +224,6 @@ public class Chat extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextArea txtHistory;
     // End of variables declaration//GEN-END:variables
 
-
     private void getMessage() throws IOException {
         String chatServer;
         BufferedReader chatFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -234,9 +235,10 @@ public class Chat extends javax.swing.JFrame implements Runnable {
 
     }
 
-    private static String viewListAccount_1(java.lang.String username, java.lang.String password) {
+    private static String viewListAccount(java.lang.String username, java.lang.String password) {
         newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.viewListAccount(username, password);
     }
+
 }
