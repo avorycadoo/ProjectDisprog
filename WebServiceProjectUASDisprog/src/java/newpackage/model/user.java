@@ -159,17 +159,17 @@ public class user extends MyModel {
     }
 
     public void deleteData(int id) {
-        try {
-            if (!MyModel.conn.isClosed()) { //jika tidak tertutup
-                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("DELETE FROM user WHERE id = ?");
-                sql.setInt(1, id);
-
-                sql.executeUpdate();
-                sql.close();
-            } //PreparedStatement adalah handling dari java
-        } catch (Exception e) {
-            System.out.println("Error di delete = " + e);
-        }
+//        try {
+//            if (!MyModel.conn.isClosed()) { //jika tidak tertutup
+//                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("DELETE FROM user WHERE id = ?");
+//                sql.setInt(1, id);
+//
+//                sql.executeUpdate();
+//                sql.close();
+//            } //PreparedStatement adalah handling dari java
+//        } catch (Exception e) {
+//            System.out.println("Error di delete = " + e);
+//        }
     }
 
     @Override

@@ -35,7 +35,7 @@ public class WebServiceServer {
     @WebMethod(operationName = "login")
     public String login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        user = new user(username, password);
+        this.user = new user(username, password);
         ArrayList<user> userList = user.checkLogin(); // Assuming checkLogin() returns an ArrayList<user>
 
         // Check if the userList contains any users

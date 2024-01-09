@@ -5,9 +5,7 @@
 package MainForm;
 
 import javax.swing.JOptionPane;
-import newpackage.model.user;
 import Timeline.FormTimeline;
-import java.util.List;
 
 /**
  *
@@ -170,16 +168,16 @@ public class FormLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.setVisible(false);
-        this.dispose();
+//        this.setVisible(false);
+//        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void cbShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPasswordActionPerformed
-        if (cbShowPassword.isSelected()) {
-            txtPassword.setEchoChar((char) 0);
-        } else {
-            txtPassword.setEchoChar('*');
-        }
+//        if (cbShowPassword.isSelected()) {
+//            txtPassword.setEchoChar((char) 0);
+//        } else {
+//            txtPassword.setEchoChar('*');
+//        }
     }//GEN-LAST:event_cbShowPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -190,9 +188,11 @@ public class FormLogin extends javax.swing.JFrame {
         String[] arr = user.split("-");
         String iduser = arr[0];
         JOptionPane.showMessageDialog(this, "Welcome " + arr[1]);
-        this.dispose();
-        FormTimeline timeline = new FormTimeline(iduser);
+        
+        FormTimeline timeline = new FormTimeline(user);
         timeline.setVisible(true);
+        
+        this.dispose();
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -256,4 +256,6 @@ public class FormLogin extends javax.swing.JFrame {
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.login(username, password);
     }
+
+
 }

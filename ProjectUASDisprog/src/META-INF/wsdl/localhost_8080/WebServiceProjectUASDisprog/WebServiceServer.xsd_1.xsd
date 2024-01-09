@@ -24,6 +24,10 @@
 
 <xs:element name="registrasiResponse" type="tns:registrasiResponse"/>
 
+<xs:element name="ubahPost" type="tns:ubahPost"/>
+
+<xs:element name="ubahPostResponse" type="tns:ubahPostResponse"/>
+
 <xs:element name="viewListAccount" type="tns:viewListAccount"/>
 
 <xs:element name="viewListAccountResponse" type="tns:viewListAccountResponse"/>
@@ -90,6 +94,20 @@
 
 <xs:complexType name="registrasiResponse">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="ubahPost">
+<xs:sequence>
+<xs:element name="judul" type="xs:string" minOccurs="0"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="userPembuat" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ubahPostResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="addReply">
