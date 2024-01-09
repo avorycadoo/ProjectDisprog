@@ -63,7 +63,7 @@ public class WebServiceServer {
     @WebMethod(operationName = "registrasi")
     public void registrasi(@WebParam(name = "username") String username, @WebParam(name = "password") String password, @WebParam(name = "email") String email) {
         //TODO write your implementation code here:
-        user = new user(username, password, email);
+        this.user = new user(username, password, email);
         user.insertData();
     }
 
@@ -73,7 +73,8 @@ public class WebServiceServer {
     @WebMethod(operationName = "viewListAccount")
     public String viewListAccount(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        return null;
+        this.user = new user(username, password);
+        return user.viewListData().toString();
     }
 
     /**
