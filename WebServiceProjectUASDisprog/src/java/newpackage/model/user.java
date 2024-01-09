@@ -158,9 +158,18 @@ public class user extends MyModel {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public void deleteData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deleteData(int id) {
+        try {
+            if (!MyModel.conn.isClosed()) { //jika tidak tertutup
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("DELETE FROM user WHERE id = ?");
+                sql.setInt(1, id);
+
+                sql.executeUpdate();
+                sql.close();
+            } //PreparedStatement adalah handling dari java
+        } catch (Exception e) {
+            System.out.println("Error di delete = " + e);
+        }
     }
 
     @Override
@@ -187,5 +196,10 @@ public class user extends MyModel {
         }
 
         return collections;
+    }
+
+    @Override
+    public void deleteData() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
