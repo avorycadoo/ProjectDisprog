@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class Chat extends javax.swing.JFrame implements Runnable {
 
 
-    public String emailLogin;
+    public String usernameLogin;
     Socket clientSocket;
     Thread t;
 
@@ -29,41 +29,21 @@ public class Chat extends javax.swing.JFrame implements Runnable {
      * Creates new form Chat
      */
     public Chat() {
-//        try {
-//            initComponents();
-//
-//            clientSocket = new Socket("localhost", 6000); //krn masih di komputer yg sama makanya localhost, port 6000
-//            if (t == null) {
-//                t = new Thread(this, "client");
-//                t.start();
-//            }
-//        } catch (IOException ex) {
-//            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            initComponents();
+
+            clientSocket = new Socket("localhost", 6000); //krn masih di komputer yg sama makanya localhost, port 6000
+            if (t == null) {
+                t = new Thread(this, "client");
+                t.start();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    
-//    public void listAcc() {
-//        String res = viewListAccount("", "");
-//        res = res.substring(1);
-//        res = res.replace("]", "");
-//        String[] splitRes = res.split(", ");
-//        for (String acc : splitRes) {
-//            String[] i = acc.split("-");
-//            cmbDaftarAcc.addItem(i[2]);
-//        }
-//        cmbDaftarAcc.removeItem(emailLogin);
-//    }
-//    
-//    private static String viewListAccount(java.lang.String email, java.lang.String password) {
-//        ProjectDisprog.BMIWebService_Service service = new bmi_application.BMIWebService_Service();
-//        bmi_application.BMIWebService port = service.getBMIWebServicePort();
-//        return port.viewListAccount(email, password);
-//    }
-
-
     public void listAcc() {
-        String res = viewListAccount("", "");
+        String res = viewListAccount_1("", "");
         res = res.substring(1);
         res = res.replace("]", "");
         String[] splitRes = res.split(", ");
@@ -71,7 +51,7 @@ public class Chat extends javax.swing.JFrame implements Runnable {
             String[] i = acc.split("-");
             cmbDaftarAcc.addItem(i[2]);
         }
-        cmbDaftarAcc.removeItem(emailLogin);
+        cmbDaftarAcc.removeItem(usernameLogin);
     }
 
     public void run() {
@@ -187,7 +167,7 @@ public class Chat extends javax.swing.JFrame implements Runnable {
         try {
             String chatClient, chatServer;
 
-            chatClient = emailLogin + ": " + txtChat.getText(); //ambil pesan di textField
+            chatClient = usernameLogin + ": " + txtChat.getText(); //ambil pesan di textField
             DataOutputStream sendToServer = new DataOutputStream(clientSocket.getOutputStream()); //menyiapkan objek berisi data server
             sendToServer.writeBytes(chatClient + "\n"); //pengiriman pesan ke server
 
@@ -242,11 +222,6 @@ public class Chat extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextArea txtHistory;
     // End of variables declaration//GEN-END:variables
 
-    private static String viewListAccount(java.lang.String username, java.lang.String password) {
-        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
-        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
-        return port.viewListAccount(username, password);
-    }
 
     private void getMessage() throws IOException {
         String chatServer;
@@ -257,5 +232,11 @@ public class Chat extends javax.swing.JFrame implements Runnable {
 
         txtHistory.append(chatServer + "\n"); //pesan taruh di textArea
 
+    }
+
+    private static String viewListAccount_1(java.lang.String username, java.lang.String password) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.viewListAccount(username, password);
     }
 }

@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 public class chat extends MyModel{
     private int id;
+    private String username;
+    private String password;
     private String chat;
     private Timestamp created_date;
     private int user_id;
@@ -22,6 +24,11 @@ public class chat extends MyModel{
     public chat(){
         this.chat = null;
         this.user_id = 0;
+    }
+    
+    public chat(String username, String password){
+        this.username = username;
+        this.password = password;
     }
     
     public chat(String chat, Timestamp created_date, int user_id){

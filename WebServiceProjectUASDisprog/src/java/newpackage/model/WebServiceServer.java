@@ -73,7 +73,7 @@ public class WebServiceServer {
     @WebMethod(operationName = "viewListAccount")
     public String viewListAccount(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        this.user = new user(username, password);
+        user = new user(username, password);
         return user.viewListData().toString();
     }
 

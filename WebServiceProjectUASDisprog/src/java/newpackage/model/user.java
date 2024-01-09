@@ -176,11 +176,8 @@ public class user extends MyModel {
     public ArrayList<Object> viewListData() {
         ArrayList<Object> collections = new ArrayList<>();
         try {
-            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                    "SELECT * FROM user WHERE username = ? AND password = ?");
-            sql.setString(1, this.username);
-            sql.setString(2, this.password);
-            this.result = sql.executeQuery();
+            PreparedStatement result = (PreparedStatement) MyModel.conn.prepareStatement(
+                    "SELECT * FROM user");
             while (this.result.next()) {
                 user tmpUser = new user(
                         this.result.getInt("id"),
