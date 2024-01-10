@@ -100,6 +100,16 @@
 <xs:sequence/>
 </xs:complexType>
 
+<xs:complexType name="viewListPost">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListPostResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="ubahPost">
 <xs:sequence>
 <xs:element name="judul" type="xs:string" minOccurs="0"/>
@@ -111,16 +121,6 @@
 <xs:complexType name="ubahPostResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="viewListPost">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="viewListPostResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

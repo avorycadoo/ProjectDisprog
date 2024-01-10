@@ -21,6 +21,7 @@ public class UbahPost extends javax.swing.JFrame {
      */
     public UbahPost(String id) {
         initComponents();
+        id = "1";
         idUser = id;
 //        oldData();
     }

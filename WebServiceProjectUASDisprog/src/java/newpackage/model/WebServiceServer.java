@@ -128,7 +128,9 @@ public class WebServiceServer {
     @WebMethod(operationName = "ubahPost")
     public Boolean ubahPost(@WebParam(name = "judul") String judul, @WebParam(name = "deskripsi") String deskripsi, @WebParam(name = "userPembuat") int userPembuat) {
         //TODO write your implementation code here:
-        return null;
+        post = new post(judul, deskripsi, userPembuat);
+        post.updateDate();
+        return true;
     }
 
     /**

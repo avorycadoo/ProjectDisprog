@@ -113,7 +113,7 @@ public class post extends MyModel{
         try{
             if(!MyModel.conn.isClosed()){
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                "UPDATE post(judul, deskripsi, user_pembuat) VALUES (?, ?, ?)");
+                "UPDATE post SET judul = ?, deskripsi = ?, updated_date = now() WHERE user_pembuat = ?;");
                 sql.setString(1, this.judul);
                 sql.setString(2, this.deskripsi);
                 sql.setInt(3, this.user_pembuat);
