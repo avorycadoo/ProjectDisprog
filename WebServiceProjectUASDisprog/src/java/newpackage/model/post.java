@@ -13,34 +13,41 @@ import java.util.ArrayList;
  *
  * @author satya
  */
-public class post extends MyModel{
+public class post extends MyModel {
+
     private int id;
     private String judul;
     private String deskripsi;
     private Timestamp created_date;
     private Timestamp updated_date;
     private int user_pembuat;
-    
-    public post(){
+
+    public post() {
         this.judul = null;
         this.deskripsi = null;
         this.user_pembuat = 0;
     }
-    
-    public post(int id, String judul, String deskripsi, int user_pembuat, Timestamp created_date){
+
+    public post(int id, String judul, String deskripsi, int user_pembuat, Timestamp created_date) {
         setId(id);
         setJudul(judul);
         setDeskripsi(deskripsi);
         setUser_pembuat(user_pembuat);
         setCreated_date(created_date);
     }
-    
-    public post(String judul, String deskripsi, int user_pembuat){
+
+    public post(String judul, String deskripsi, int user_pembuat) {
         setJudul(judul);
         setDeskripsi(deskripsi);
         setUser_pembuat(user_pembuat);
     }
     
+    public post(int id, String judul, String deskripsi, int user_pembuat) {
+        setId(id);
+        setJudul(judul);
+        setDeskripsi(deskripsi);
+        setUser_pembuat(user_pembuat);
+    }
 
     public int getId() {
         return id;
@@ -89,39 +96,38 @@ public class post extends MyModel{
     public void setUser_pembuat(int user_pembuat) {
         this.user_pembuat = user_pembuat;
     }
-    
-    
 
     @Override
     public void insertData() {
-        try{
-            if(!MyModel.conn.isClosed()){
+        try {
+            if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                "INSERT INTO post(judul, deskripsi, user_pembuat) VALUES (?, ?, ?)");
+                        "INSERT INTO post(judul, deskripsi, user_pembuat) VALUES (?, ?, ?)");
                 sql.setString(1, this.judul);
                 sql.setString(2, this.deskripsi);
                 sql.setInt(3, this.user_pembuat);
                 sql.executeUpdate();
 //                sql.close();
             }
-        } catch (Exception x){
+        } catch (Exception x) {
             System.out.println(x.getMessage());
         }
     }
 
     @Override
     public void updateDate() {
-        try{
-            if(!MyModel.conn.isClosed()){
+        try {
+            if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                "UPDATE post SET judul = ?, deskripsi = ?, updated_date = now() WHERE user_pembuat = ?;");
+                        "UPDATE post SET judul = ?, deskripsi = ?, updated_date = now() WHERE user_pembuat = ? AND id = ?;");
+                sql.setInt(0, this.id);
                 sql.setString(1, this.judul);
                 sql.setString(2, this.deskripsi);
-                sql.setInt(3, this.user_pembuat);
+                sql.setInt(5, this.user_pembuat);
                 sql.executeUpdate();
                 sql.close();
             }
-        } catch (Exception x){
+        } catch (Exception x) {
             System.out.println(x.getMessage());
         }
     }
@@ -147,7 +153,7 @@ public class post extends MyModel{
         try {
             this.statement = (Statement) MyModel.conn.createStatement();
             this.result = this.statement.executeQuery("SELECT * FROM post ");
-            while(this.result.next()){
+            while (this.result.next()) {
                 post tmpPost = new post(
                         this.result.getInt("id"),
                         this.result.getString("judul"),
@@ -155,14 +161,14 @@ public class post extends MyModel{
                         this.result.getInt("user_pembuat"),
                         this.result.getTimestamp("created_date")
                 );
-                
+
                 collections.add(tmpPost);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
         return collections;
     }
-    
+
 }

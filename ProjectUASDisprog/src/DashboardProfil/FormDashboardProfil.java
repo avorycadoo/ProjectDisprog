@@ -15,18 +15,23 @@ import newpackage.model.post;
  */
 public class FormDashboardProfil extends javax.swing.JFrame {
 
+    static String nameUser;
+    post p;
+
     /**
      * Creates new form FormDashboardProfil
      */
-    public FormDashboardProfil() {
+    public FormDashboardProfil(String name) {
         initComponents();
+        nameUser = name;
+        refreshTable();
     }
 
     public void refreshTable() {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
-        Object[] rowData = new Object[5];
-//        List<post> postList = viewListPost(); // Assuming viewListPost() returns a List<Post>
+        Object[] rowData = new Object[4];
+        List<String> postList = viewListPost(); // Assuming viewListPost() returns a List<Post>
 
         // Loop through the list of posts
 //        for (post post : postList) {
@@ -39,6 +44,19 @@ public class FormDashboardProfil extends javax.swing.JFrame {
 //            // Add the rowData to the table model
 //            model.addRow(rowData);
 //        }
+        for (String obj : postList) {
+            String[] arr = obj.split("///");
+            if (nameUser.equals(arr[1])) {
+//                post obj = (post) object;
+//                rowData[0] = obj.getJudul();
+//                rowData[1] = obj.getDeskripsi();
+                rowData[0] = arr[0];
+                rowData[1] = arr[1];
+                rowData[2] = arr[2];
+                rowData[3] = arr[3];
+            }
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -177,7 +195,7 @@ public class FormDashboardProfil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormDashboardProfil().setVisible(true);
+                new FormDashboardProfil(nameUser).setVisible(true);
             }
         });
     }

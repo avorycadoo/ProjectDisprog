@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.0 (wsit240-7e98ff4; 2017-08-03T21:19:54+0200) JAXWS-RI/2.3.0 JAXWS-API/2.3.0 JAXB-RI/2.3.0 JAXB-API/2.3.0 svn-revision#unknown. --><xs:schema xmlns:tns="http://model.newpackage/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://model.newpackage/">
 
+<xs:element name="addChat2" type="tns:addChat2"/>
+
+<xs:element name="addChat2Response" type="tns:addChat2Response"/>
+
 <xs:element name="addLike" type="tns:addLike"/>
 
 <xs:element name="addLikeResponse" type="tns:addLikeResponse"/>
@@ -32,6 +36,10 @@
 
 <xs:element name="ubahPostResponse" type="tns:ubahPostResponse"/>
 
+<xs:element name="updatePost" type="tns:updatePost"/>
+
+<xs:element name="updatePostResponse" type="tns:updatePostResponse"/>
+
 <xs:element name="viewListAccount" type="tns:viewListAccount"/>
 
 <xs:element name="viewListAccountResponse" type="tns:viewListAccountResponse"/>
@@ -63,6 +71,19 @@
 <xs:complexType name="viewListAccountResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addChat2">
+<xs:sequence>
+<xs:element name="chat" type="xs:string" minOccurs="0"/>
+<xs:element name="user_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addChat2Response">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -164,6 +185,21 @@
 <xs:complexType name="getChatResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updatePost">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="judul" type="xs:string" minOccurs="0"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="user_pembuat" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updatePostResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

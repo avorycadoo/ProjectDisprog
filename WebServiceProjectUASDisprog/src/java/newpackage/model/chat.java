@@ -36,6 +36,11 @@ public class chat extends MyModel{
         setCreated_date(created_date);
         setUser_id(user_id);
     }
+    
+    public chat(String chat, int user_id){
+        setChat(chat);
+        setUser_id(user_id);
+    }
 
     public int getId() {
         return id;
@@ -76,9 +81,9 @@ public class chat extends MyModel{
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
                 "INSERT INTO chat(chat, user_id) VALUES (?, ?)");
                 sql.setString(1, this.chat);
-                sql.setInt(2, this.user_id);
+                sql.setInt(3, this.user_id);
                 sql.executeUpdate();
-                sql.close();
+//                sql.close();
             }
         } catch (Exception x){
             System.out.println(x.getMessage());

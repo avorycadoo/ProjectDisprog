@@ -171,11 +171,7 @@ public class WebServiceServer {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "addChat")
-    public String addChat(@WebParam(name = "chat") String chat, @WebParam(name = "user_id") int user_id) {
-        //TODO write your implementation code here:
-        return null;
-    }
+   
 
     /**
      * Web service operation
@@ -184,6 +180,17 @@ public class WebServiceServer {
     public Boolean addChat2(@WebParam(name = "chat") String chat, @WebParam(name = "user_id") int user_id) {
         //TODO write your implementation code here:
         return null;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "updatePost")
+    public Boolean updatePost(@WebParam(name = "id") int id, @WebParam(name = "judul") String judul, @WebParam(name = "deskripsi") String deskripsi, @WebParam(name = "user_pembuat") int user_pembuat) {
+        //TODO write your implementation code here:
+        post = new post(id, judul, deskripsi, user_pembuat);
+        post.updateDate();
+        return true;
     }
 
 }

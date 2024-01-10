@@ -14,16 +14,19 @@ import newpackage.model.post;
  */
 public class UbahPost extends javax.swing.JFrame {
 
-    static String idUser;
+    
     post p;
     /**
      * Creates new form UbahPost
      */
-    public UbahPost(String id) {
+    public UbahPost(int id, int idUsers) {
         initComponents();
-        idUser = id;
+        idPost = id;
+        idUser = idUsers;
 //        oldData();
     }
+    static int idPost;
+    static int idUser;
 
 //    public void oldData(){
 //        Object[] rowData = new Object[2];
@@ -138,7 +141,7 @@ public class UbahPost extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         String judul = txtJudul.getText();
         String deskripsi = txtDeskripsi.getText();
-        ubahPost(judul, deskripsi, Integer.parseInt(idUser));
+        updatePost(idPost, judul, deskripsi, idUser);
         JOptionPane.showMessageDialog(this, "Change post success.");
 
         this.dispose();
@@ -174,7 +177,7 @@ public class UbahPost extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UbahPost(idUser).setVisible(true);
+                new UbahPost(idPost, idUser).setVisible(true);
             }
         });
     }
@@ -193,5 +196,11 @@ public class UbahPost extends javax.swing.JFrame {
         newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.ubahPost(judul, deskripsi, userPembuat);
+    }
+
+    private static Boolean updatePost(int id, java.lang.String judul, java.lang.String deskripsi, int userPembuat) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.updatePost(id, judul, deskripsi, userPembuat);
     }
 }
