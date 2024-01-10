@@ -146,7 +146,7 @@ public class post extends MyModel{
         ArrayList<Object> collections = new ArrayList<>();
         try {
             this.statement = (Statement) MyModel.conn.createStatement();
-            this.result = this.statement.executeQuery("SELECT * FROM post");
+            this.result = this.statement.executeQuery("SELECT * FROM post ");
             while(this.result.next()){
                 post tmpPost = new post(
                         this.result.getInt("id"),

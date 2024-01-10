@@ -140,7 +140,7 @@ public class WebServiceServer {
     @WebMethod(operationName = "viewListPost")
     public ArrayList<String> viewListPost() {
         //TODO write your implementation code here:
-        post = new post();
+        this.post = new post();
         ArrayList<Object> list = post.viewListData();
         ArrayList<String> listPost = new ArrayList<>();
 

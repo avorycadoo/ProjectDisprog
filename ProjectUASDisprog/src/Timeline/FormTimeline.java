@@ -64,7 +64,7 @@ public class FormTimeline extends javax.swing.JFrame {
 //        pack();
 //    }
 
-    public void refresh(String Id) {
+    public void refresh(String id) {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
         String[] rowData = new String[5];
@@ -119,6 +119,7 @@ public class FormTimeline extends javax.swing.JFrame {
         btnDetail = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePost = new javax.swing.JTable();
+        btnRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,7 +180,7 @@ public class FormTimeline extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -200,6 +201,13 @@ public class FormTimeline extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablePost);
 
+        btnRefresh.setText("Refresh Post");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,6 +217,8 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRefresh)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCreate))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -233,7 +243,9 @@ public class FormTimeline extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDetail)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCreate)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreate)
+                    .addComponent(btnRefresh))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -261,7 +273,8 @@ public class FormTimeline extends javax.swing.JFrame {
 
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
         // TODO add your handling code here:
-        
+        DetailPost detailPost = new DetailPost(idPost, Integer.parseInt(idu));
+        detailPost.setVisible(true);
     }//GEN-LAST:event_btnDetailActionPerformed
 
     private void tablePostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePostMouseClicked
@@ -271,6 +284,11 @@ public class FormTimeline extends javax.swing.JFrame {
         int row = target.getSelectedRow();
         idPost = Integer.parseInt(target.getValueAt(row, 0).toString());
     }//GEN-LAST:event_tablePostMouseClicked
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        refresh(idu);
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,6 +329,7 @@ public class FormTimeline extends javax.swing.JFrame {
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnLike;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

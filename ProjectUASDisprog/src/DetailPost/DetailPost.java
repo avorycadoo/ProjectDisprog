@@ -16,13 +16,19 @@ public class DetailPost extends javax.swing.JFrame {
     /**
      * Creates new form DetailPost
      */
-    public DetailPost() {
+    public DetailPost(int id, int idUsers) {
         initComponents();
+        idPost = id;
+        idUser = idUsers;
         refresh();
     }
     
+    static int idPost;
+    static int idUser;
+
+    
     public void refresh(){
-        List<String> listReply = getChat(1);
+        List<String> listReply = getChat(idPost);
         String komen = "";
         for(String obj: listReply){
             String[] arr = obj.split("-");
@@ -50,6 +56,11 @@ public class DetailPost extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -134,7 +145,7 @@ public class DetailPost extends javax.swing.JFrame {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
         String reply = txtKomen.getText();
-        addReply(3, 1, reply);
+        addReply(idUser, idPost, reply);
         refresh();
     }//GEN-LAST:event_btnSendActionPerformed
 
@@ -143,6 +154,11 @@ public class DetailPost extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -174,7 +190,7 @@ public class DetailPost extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DetailPost().setVisible(true);
+                new DetailPost(idPost, idUser).setVisible(true);
             }
         });
     }
