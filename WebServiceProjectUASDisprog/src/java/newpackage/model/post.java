@@ -27,7 +27,8 @@ public class post extends MyModel{
         this.user_pembuat = 0;
     }
     
-    public post(String judul, String deskripsi, int user_pembuat, Timestamp created_date){
+    public post(int id, String judul, String deskripsi, int user_pembuat, Timestamp created_date){
+        setId(id);
         setJudul(judul);
         setDeskripsi(deskripsi);
         setUser_pembuat(user_pembuat);
@@ -148,6 +149,7 @@ public class post extends MyModel{
             this.result = this.statement.executeQuery("SELECT * FROM post");
             while(this.result.next()){
                 post tmpPost = new post(
+                        this.result.getInt("id"),
                         this.result.getString("judul"),
                         this.result.getString("deskripsi"),
                         this.result.getInt("user_pembuat"),

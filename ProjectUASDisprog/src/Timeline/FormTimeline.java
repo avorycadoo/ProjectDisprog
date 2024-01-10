@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import newpackage.model.post;
 import DetailPost.DetailPost;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,6 +41,7 @@ public class FormTimeline extends javax.swing.JFrame {
 
     static String idu;
     String[] ids;
+    int idPost = 0;
 
 //    private void Timeline() {
 //        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,15 +67,16 @@ public class FormTimeline extends javax.swing.JFrame {
     public void refresh(String Id) {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
-        String[] rowData = new String[4];
+        String[] rowData = new String[5];
         List<String> listPost = viewListPost();
 //        String komen = "";
         for (String obj : listPost) {
-            String[] arr = obj.split("-");
+            String[] arr = obj.split("///");
             rowData[0] = arr[0];
             rowData[1] = arr[1];
             rowData[2] = arr[2];
             rowData[3] = arr[3];
+            rowData[4] = arr[4];
             model.addRow(rowData);
         }
 //        txtKomenArea.setText(komen);
@@ -112,8 +115,8 @@ public class FormTimeline extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnLike = new javax.swing.JButton();
+        btnDetail = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePost = new javax.swing.JTable();
 
@@ -150,27 +153,42 @@ public class FormTimeline extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Like");
+        btnLike.setText("Like");
+        btnLike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLikeActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Detail");
+        btnDetail.setText("Detail");
+        btnDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetailActionPerformed(evt);
+            }
+        });
 
         tablePost.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Creator", "Judul", "Deskripsi", "Created Date"
+                "id", "Creator", "Judul", "Deskripsi", "Created Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tablePost.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePostMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablePost);
@@ -181,28 +199,33 @@ public class FormTimeline extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCreate)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(377, 377, 377)
+                        .addComponent(btnCreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(btnLike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton3)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(btnLike)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDetail)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCreate)
                 .addContainerGap(11, Short.MAX_VALUE))
@@ -217,6 +240,31 @@ public class FormTimeline extends javax.swing.JFrame {
         BuatPost create = new BuatPost(idu);
         create.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLikeActionPerformed
+        // TODO add your handling code here:
+        
+        
+        if(idPost == 0){
+            JOptionPane.showMessageDialog(this, "Select post first.");
+        } else {
+            addLike(Integer.parseInt(idu), idPost);
+            JOptionPane.showMessageDialog(this, "Hell yea.");
+        }
+    }//GEN-LAST:event_btnLikeActionPerformed
+
+    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnDetailActionPerformed
+
+    private void tablePostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePostMouseClicked
+        // TODO add your handling code here:
+        JTable target = (JTable) evt.getSource();
+        
+        int row = target.getSelectedRow();
+        idPost = Integer.parseInt(target.getValueAt(row, 0).toString());
+    }//GEN-LAST:event_tablePostMouseClicked
 
     /**
      * @param args the command line arguments
@@ -255,8 +303,8 @@ public class FormTimeline extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnDetail;
+    private javax.swing.JButton btnLike;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -267,5 +315,11 @@ public class FormTimeline extends javax.swing.JFrame {
         newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.viewListPost();
+    }
+
+    private static Boolean addLike(int userId, int postId) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.addLike(userId, postId);
     }
 }

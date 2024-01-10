@@ -19,6 +19,7 @@ public class WebServiceServer {
     user user;
     reply reply;
     post post;
+    like like;
     ArrayList<Object> listofuser;
 
     /**
@@ -148,11 +149,22 @@ public class WebServiceServer {
                 post p = ((post) obj);      
 //                reply newr = new reply(r.getUser_id(), r.getPost_id(), r.getReply());
 //                listReply.add(newr);
-                listPost.add(p.getUser_pembuat() + "-" + p.getJudul()+ "-" + p.getDeskripsi()+ "-" + p.getCreated_date());
+                listPost.add(p.getId() + "///" + p.getUser_pembuat() + "///" + p.getJudul()+ "///" + p.getDeskripsi()+ "///" + p.getCreated_date());
             }
         }
         return listPost;
 //        return null;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addLike")
+    public Boolean addLike(@WebParam(name = "user_id") int user_id, @WebParam(name = "post_id") int post_id) {
+        //TODO write your implementation code here:
+        this.like = new like(user_id, post_id);
+        like.insertData();
+        return true;
     }
 
 }
