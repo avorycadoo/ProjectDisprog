@@ -22,8 +22,8 @@ public class like extends MyModel {
         setPost_id(post_id);
     }
 
-    public like(int user_id) {
-        setUser_id(user_id);
+    public like(int post_id) {
+        setPost_id(post_id);
     }
 
     public int getUser_id() {
@@ -105,11 +105,11 @@ public class like extends MyModel {
     }
 
     public int likePost() {
-        int jumlah = 0;
+        int jumlah = 1;
         try {
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                        "SELECT COUNT(user_id) as jumlah FROM `like` where post_id = ?");
+                            "SELECT COUNT(user_id) as jumlah FROM `like` where post_id = ?");
                 sql.setInt(1, this.post_id);
                 this.result = sql.executeQuery();
                 while (this.result.next()) {
