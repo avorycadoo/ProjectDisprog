@@ -36,6 +36,10 @@
 
 <xs:element name="registrasiResponse" type="tns:registrasiResponse"/>
 
+<xs:element name="replyPost" type="tns:replyPost"/>
+
+<xs:element name="replyPostResponse" type="tns:replyPostResponse"/>
+
 <xs:element name="ubahPost" type="tns:ubahPost"/>
 
 <xs:element name="ubahPostResponse" type="tns:ubahPostResponse"/>
@@ -64,6 +68,18 @@
 </xs:complexType>
 
 <xs:complexType name="loginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="replyPost">
+<xs:sequence>
+<xs:element name="post_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="replyPostResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>

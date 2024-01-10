@@ -86,7 +86,8 @@ public class FormTimeline extends javax.swing.JFrame {
             rowData[3] = arr[3];
             rowData[4] = arr[4];
             rowData[5] = likePost(Integer.parseInt(arr[0]));
-            
+            rowData[6]= replyPost(Integer.parseInt(arr[0]));
+
             model.addRow(rowData);
         }
 //        txtKomenArea.setText(komen);
@@ -405,8 +406,10 @@ public class FormTimeline extends javax.swing.JFrame {
         return port.likePost(postId);
     }
 
+    private static String replyPost(int postId) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.replyPost(postId);
+    }
 
-    
-
-   
 }

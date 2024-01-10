@@ -100,6 +100,26 @@ public class reply extends MyModel{
             System.out.println(x.getMessage());
         }
     }
+    
+    public String replyPost(){
+        String jumlah = "";
+        try {
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+                            "SELECT COUNT(user_id) as jumlah FROM `reply` where post_id = ?");
+                sql.setInt(1, this.post_id);
+                this.result = sql.executeQuery();
+                while (this.result.next()) {
+                
+                jumlah =  this.result.getString("jumlah");
+//                sql.close();
+                }
+            }
+        } catch (Exception x) {
+            System.out.println(x.getMessage());
+        }
+        return jumlah;
+    }
 
     @Override
     public void updateDate() {

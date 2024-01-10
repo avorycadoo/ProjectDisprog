@@ -206,6 +206,7 @@ public class WebServiceServer {
     /**
      * Web service operation
      */
+<<<<<<< Updated upstream
     @WebMethod(operationName = "viewListPostUser")
     public ArrayList<String> viewListPostUser(@WebParam(name = "username") String username) {
         //TODO write your implementation code here:
@@ -222,6 +223,13 @@ public class WebServiceServer {
             }
         }
         return listPost;
+=======
+    @WebMethod(operationName = "replyPost")
+    public String replyPost(@WebParam(name = "post_id") int post_id) {
+        //TODO write your implementation code here:
+        this.reply = new reply(post_id);
+        return reply.replyPost();
+>>>>>>> Stashed changes
     }
 
 }
