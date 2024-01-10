@@ -5,6 +5,7 @@
 package Timeline;
 
 import BuatPost.BuatPost;
+import Chat.Chat;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -35,11 +36,13 @@ public class FormTimeline extends javax.swing.JFrame {
 
         ids = id.split("-");
         idu = ids[0];
+        username = ids[1];
         refresh(idu);
 
     }
 
     static String idu;
+    static String username;
     String[] ids;
     int idPost = 0;
 
@@ -120,6 +123,7 @@ public class FormTimeline extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePost = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
+        btnChat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,6 +212,13 @@ public class FormTimeline extends javax.swing.JFrame {
             }
         });
 
+        btnChat.setText("Chat");
+        btnChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,6 +228,8 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnChat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCreate))
@@ -245,7 +258,8 @@ public class FormTimeline extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
-                    .addComponent(btnRefresh))
+                    .addComponent(btnRefresh)
+                    .addComponent(btnChat))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -290,6 +304,11 @@ public class FormTimeline extends javax.swing.JFrame {
         refresh(idu);
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatActionPerformed
+        Chat formChat = new Chat(username);
+        formChat.setVisible(true);
+    }//GEN-LAST:event_btnChatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -326,6 +345,7 @@ public class FormTimeline extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChat;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnLike;

@@ -22,20 +22,31 @@ public class Chat extends javax.swing.JFrame implements Runnable {
     public String usernameLogin;
     Socket clientSocket;
     Thread t;
+    static String user;
 
     /**
      * Creates new form Chat
      */
-    public Chat() {
+    public Chat(String username) {
         try {
+            System.out.println("Initializing Chat");
             initComponents();
+            user = username;
 
-            clientSocket = new Socket("localhost", 6000); //krn masih di komputer yg sama makanya localhost, port 6000
+            clientSocket = new Socket("localhost", 6000);
+
+            if (clientSocket != null && !clientSocket.isClosed()) {
+                System.out.println("Socket initialized successfully");
+            } else {
+                System.out.println("Socket initialization failed");
+            }
+
             if (t == null) {
                 t = new Thread(this, "client");
                 t.start();
             }
         } catch (IOException ex) {
+            ex.printStackTrace(); // Print the exception stack trace for debugging
             Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -53,7 +64,7 @@ public class Chat extends javax.swing.JFrame implements Runnable {
             String username = i[2];
             cmbDaftarAcc.addItem(username);
         }
-        cmbDaftarAcc.removeItem(usernameLogin); // Assuming this is the logged-in user's username
+        cmbDaftarAcc.removeItem(user); // Assuming this is the logged-in user's username
     }
 
     public void run() {
@@ -167,11 +178,15 @@ public class Chat extends javax.swing.JFrame implements Runnable {
 
     private void btnReplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReplyActionPerformed
         try {
-            String chatClient, chatServer;
+            if (clientSocket != null) {
+                String chatClient, chatServer;
 
-            chatClient = usernameLogin + ": " + txtChat.getText(); //ambil pesan di textField
-            DataOutputStream sendToServer = new DataOutputStream(clientSocket.getOutputStream()); //menyiapkan objek berisi data server
-            sendToServer.writeBytes(chatClient + "\n"); //pengiriman pesan ke server
+                chatClient = user + ": " + txtChat.getText(); //ambil pesan di textField
+                DataOutputStream sendToServer = new DataOutputStream(clientSocket.getOutputStream()); //menyiapkan objek berisi data server
+                sendToServer.writeBytes(chatClient + "\n"); //pengiriman pesan ke server
+            } else {
+                System.out.println("clientSocket is null");
+            }
 
         } catch (Exception e) {
             System.out.println("Error btnSend : " + e);
@@ -208,7 +223,7 @@ public class Chat extends javax.swing.JFrame implements Runnable {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Chat().setVisible(true);
+                new Chat(user).setVisible(true);
             }
         });
     }
