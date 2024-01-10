@@ -120,12 +120,12 @@ public class post extends MyModel {
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
                         "UPDATE post SET judul = ?, deskripsi = ?, updated_date = now() WHERE user_pembuat = ? AND id = ?;");
-                sql.setInt(0, this.id);
                 sql.setString(1, this.judul);
                 sql.setString(2, this.deskripsi);
-                sql.setInt(5, this.user_pembuat);
+                sql.setInt(3, this.user_pembuat);
+                sql.setInt(4, this.id);
                 sql.executeUpdate();
-                sql.close();
+//                sql.close();
             }
         } catch (Exception x) {
             System.out.println(x.getMessage());
