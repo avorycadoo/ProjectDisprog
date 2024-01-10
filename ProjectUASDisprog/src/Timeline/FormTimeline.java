@@ -68,7 +68,6 @@ public class FormTimeline extends javax.swing.JFrame {
 //        getContentPane().add(scrollPane);
 //        pack();
 //    }
-
     public void refresh(String id) {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
@@ -107,7 +106,6 @@ public class FormTimeline extends javax.swing.JFrame {
 //        }
 //        return daftarPostingan;
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -288,9 +286,8 @@ public class FormTimeline extends javax.swing.JFrame {
 
     private void btnLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLikeActionPerformed
         // TODO add your handling code here:
-        
-        
-        if(idPost == 0){
+
+        if (idPost == 0) {
             JOptionPane.showMessageDialog(this, "Select post first.");
         } else {
             addLike(Integer.parseInt(idu), idPost);
@@ -307,13 +304,18 @@ public class FormTimeline extends javax.swing.JFrame {
     private void tablePostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePostMouseClicked
         // TODO add your handling code here:
         JTable target = (JTable) evt.getSource();
-        
-        int row = target.getSelectedRow();
-        idPost = Integer.parseInt(target.getValueAt(row, 0).toString());
-        
-//        username = target.getValueAt(row, 0).toString();
-//        FormDashboardProfil fdp = new FormDashboardProfil(username);
-//        fdp.setVisible(true);
+
+        int col = target.getSelectedColumn();
+        if (col == 0) {
+            idPost = Integer.parseInt(target.getValueAt(col, 0).toString());
+        } else if (col == 1) {
+//            int row2 = target.getSelectedRow();
+            idu = target.getValueAt(col, 0).toString();
+            FormDashboardProfil fdp = new FormDashboardProfil(username);
+            fdp.setVisible(true);
+        }
+
+//        
     }//GEN-LAST:event_tablePostMouseClicked
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -327,7 +329,7 @@ public class FormTimeline extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChatActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        UbahPost formUbah = new UbahPost(idPost,Integer.parseInt(idu));
+        UbahPost formUbah = new UbahPost(idPost, Integer.parseInt(idu));
         formUbah.setVisible(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
