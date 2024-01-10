@@ -32,6 +32,10 @@
 
 <xs:element name="viewListAccountResponse" type="tns:viewListAccountResponse"/>
 
+<xs:element name="viewListPost" type="tns:viewListPost"/>
+
+<xs:element name="viewListPostResponse" type="tns:viewListPostResponse"/>
+
 <xs:complexType name="login">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -94,6 +98,16 @@
 
 <xs:complexType name="registrasiResponse">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListPost">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListPostResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="ubahPost">

@@ -4,11 +4,23 @@
 <xsd:import namespace="http://model.newpackage/" schemaLocation="http://localhost:8181/WebServiceProjectUASDisprog/WebServiceServer?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="addPost">
-<part name="parameters" element="tns:addPost"/>
+<message name="viewListPost">
+<part name="parameters" element="tns:viewListPost"/>
 </message>
-<message name="addPostResponse">
-<part name="parameters" element="tns:addPostResponse"/>
+<message name="viewListPostResponse">
+<part name="parameters" element="tns:viewListPostResponse"/>
+</message>
+<message name="login">
+<part name="parameters" element="tns:login"/>
+</message>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
+</message>
+<message name="addReply">
+<part name="parameters" element="tns:addReply"/>
+</message>
+<message name="addReplyResponse">
+<part name="parameters" element="tns:addReplyResponse"/>
 </message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
@@ -22,29 +34,11 @@
 <message name="getChatResponse">
 <part name="parameters" element="tns:getChatResponse"/>
 </message>
-<message name="addReply">
-<part name="parameters" element="tns:addReply"/>
+<message name="addPost">
+<part name="parameters" element="tns:addPost"/>
 </message>
-<message name="addReplyResponse">
-<part name="parameters" element="tns:addReplyResponse"/>
-</message>
-<message name="login">
-<part name="parameters" element="tns:login"/>
-</message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
-</message>
-<message name="registrasi">
-<part name="parameters" element="tns:registrasi"/>
-</message>
-<message name="registrasiResponse">
-<part name="parameters" element="tns:registrasiResponse"/>
-</message>
-<message name="viewListAccount">
-<part name="parameters" element="tns:viewListAccount"/>
-</message>
-<message name="viewListAccountResponse">
-<part name="parameters" element="tns:viewListAccountResponse"/>
+<message name="addPostResponse">
+<part name="parameters" element="tns:addPostResponse"/>
 </message>
 <message name="ubahPost">
 <part name="parameters" element="tns:ubahPost"/>
@@ -52,10 +46,30 @@
 <message name="ubahPostResponse">
 <part name="parameters" element="tns:ubahPostResponse"/>
 </message>
+<message name="viewListAccount">
+<part name="parameters" element="tns:viewListAccount"/>
+</message>
+<message name="viewListAccountResponse">
+<part name="parameters" element="tns:viewListAccountResponse"/>
+</message>
+<message name="registrasi">
+<part name="parameters" element="tns:registrasi"/>
+</message>
+<message name="registrasiResponse">
+<part name="parameters" element="tns:registrasiResponse"/>
+</message>
 <portType name="WebServiceServer">
-<operation name="addPost">
-<input wsam:Action="http://model.newpackage/WebServiceServer/addPostRequest" message="tns:addPost"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/addPostResponse" message="tns:addPostResponse"/>
+<operation name="viewListPost">
+<input wsam:Action="http://model.newpackage/WebServiceServer/viewListPostRequest" message="tns:viewListPost"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/viewListPostResponse" message="tns:viewListPostResponse"/>
+</operation>
+<operation name="login">
+<input wsam:Action="http://model.newpackage/WebServiceServer/loginRequest" message="tns:login"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/loginResponse" message="tns:loginResponse"/>
+</operation>
+<operation name="addReply">
+<input wsam:Action="http://model.newpackage/WebServiceServer/addReplyRequest" message="tns:addReply"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/addReplyResponse" message="tns:addReplyResponse"/>
 </operation>
 <operation name="hello">
 <input wsam:Action="http://model.newpackage/WebServiceServer/helloRequest" message="tns:hello"/>
@@ -65,30 +79,44 @@
 <input wsam:Action="http://model.newpackage/WebServiceServer/getChatRequest" message="tns:getChat"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/getChatResponse" message="tns:getChatResponse"/>
 </operation>
-<operation name="addReply">
-<input wsam:Action="http://model.newpackage/WebServiceServer/addReplyRequest" message="tns:addReply"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/addReplyResponse" message="tns:addReplyResponse"/>
-</operation>
-<operation name="login">
-<input wsam:Action="http://model.newpackage/WebServiceServer/loginRequest" message="tns:login"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/loginResponse" message="tns:loginResponse"/>
-</operation>
-<operation name="registrasi">
-<input wsam:Action="http://model.newpackage/WebServiceServer/registrasiRequest" message="tns:registrasi"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/registrasiResponse" message="tns:registrasiResponse"/>
-</operation>
-<operation name="viewListAccount">
-<input wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountRequest" message="tns:viewListAccount"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountResponse" message="tns:viewListAccountResponse"/>
+<operation name="addPost">
+<input wsam:Action="http://model.newpackage/WebServiceServer/addPostRequest" message="tns:addPost"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/addPostResponse" message="tns:addPostResponse"/>
 </operation>
 <operation name="ubahPost">
 <input wsam:Action="http://model.newpackage/WebServiceServer/ubahPostRequest" message="tns:ubahPost"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/ubahPostResponse" message="tns:ubahPostResponse"/>
 </operation>
+<operation name="viewListAccount">
+<input wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountRequest" message="tns:viewListAccount"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountResponse" message="tns:viewListAccountResponse"/>
+</operation>
+<operation name="registrasi">
+<input wsam:Action="http://model.newpackage/WebServiceServer/registrasiRequest" message="tns:registrasi"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/registrasiResponse" message="tns:registrasiResponse"/>
+</operation>
 </portType>
 <binding name="WebServiceServerPortBinding" type="tns:WebServiceServer">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="addPost">
+<operation name="viewListPost">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="login">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="addReply">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -115,7 +143,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="addReply">
+<operation name="addPost">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -124,16 +152,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="login">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="registrasi">
+<operation name="ubahPost">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -151,7 +170,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="ubahPost">
+<operation name="registrasi">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
