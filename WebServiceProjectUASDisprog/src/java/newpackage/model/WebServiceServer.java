@@ -20,6 +20,7 @@ public class WebServiceServer {
     reply reply;
     post post;
     like like;
+    chat chat;
     ArrayList<Object> listofuser;
 
     /**
@@ -165,6 +166,24 @@ public class WebServiceServer {
         this.like = new like(user_id, post_id);
         like.insertData();
         return true;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addChat")
+    public String addChat(@WebParam(name = "chat") String chat, @WebParam(name = "user_id") int user_id) {
+        //TODO write your implementation code here:
+        return null;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addChat2")
+    public Boolean addChat2(@WebParam(name = "chat") String chat, @WebParam(name = "user_id") int user_id) {
+        //TODO write your implementation code here:
+        return null;
     }
 
 }

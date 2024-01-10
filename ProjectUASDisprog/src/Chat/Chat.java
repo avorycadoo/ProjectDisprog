@@ -180,10 +180,12 @@ public class Chat extends javax.swing.JFrame implements Runnable {
         try {
             if (clientSocket != null) {
                 String chatClient, chatServer;
+                String chat = txtChat.getText();
 
-                chatClient = user + ": " + txtChat.getText(); //ambil pesan di textField
+                chatClient = user + ": " + chat; //ambil pesan di textField
                 DataOutputStream sendToServer = new DataOutputStream(clientSocket.getOutputStream()); //menyiapkan objek berisi data server
                 sendToServer.writeBytes(chatClient + "\n"); //pengiriman pesan ke server
+                
             } else {
                 System.out.println("clientSocket is null");
             }
