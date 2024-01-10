@@ -41,7 +41,7 @@ public class FormTimeline extends javax.swing.JFrame {
         ids = id.split("-");
         idu = ids[0];
         username = ids[1];
-        refresh(idu);
+        refresh();
 
     }
 
@@ -70,7 +70,7 @@ public class FormTimeline extends javax.swing.JFrame {
 //        getContentPane().add(scrollPane);
 //        pack();
 //    }
-    public void refresh(String id) {
+    public void refresh() {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
         String[] rowData = new String[7];
@@ -85,7 +85,7 @@ public class FormTimeline extends javax.swing.JFrame {
             rowData[2] = arr[2];
             rowData[3] = arr[3];
             rowData[4] = arr[4];
-            rowData[5] = String.valueOf(likePost(Integer.parseInt(arr[5])));
+            rowData[5] = likePost(Integer.parseInt(arr[0]));
             
             model.addRow(rowData);
         }
@@ -326,7 +326,7 @@ public class FormTimeline extends javax.swing.JFrame {
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
-        refresh(idu);
+        refresh();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatActionPerformed
@@ -399,11 +399,12 @@ public class FormTimeline extends javax.swing.JFrame {
         return port.addLike(userId, postId);
     }
 
-    private static int likePost(int userId) {
+    private static String likePost(int postId) {
         newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
-        return port.likePost(userId);
+        return port.likePost(postId);
     }
+
 
     
 

@@ -197,7 +197,7 @@ public class WebServiceServer {
      * Web service operation
      */
     @WebMethod(operationName = "likePost")
-    public int likePost(@WebParam(name = "post_id") int post_id) {
+    public String likePost(@WebParam(name = "post_id") int post_id) {
         //TODO write your implementation code here:
         this.like = new like(post_id);
         return like.likePost();

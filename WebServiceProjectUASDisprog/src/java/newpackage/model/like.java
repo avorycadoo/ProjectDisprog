@@ -104,8 +104,8 @@ public class like extends MyModel {
         return collections;
     }
 
-    public int likePost() {
-        int jumlah = 1;
+    public String likePost() {
+        String jumlah = "";
         try {
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
@@ -114,7 +114,7 @@ public class like extends MyModel {
                 this.result = sql.executeQuery();
                 while (this.result.next()) {
                 
-                jumlah =  this.result.getInt("jumlah");
+                jumlah =  this.result.getString("jumlah");
 //                sql.close();
                 }
             }
