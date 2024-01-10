@@ -15,23 +15,23 @@ import newpackage.model.post;
  */
 public class FormDashboardProfil extends javax.swing.JFrame {
 
-    static String idUser;
+    static String username;
 
     /**
      * Creates new form FormDashboardProfil
      */
     public FormDashboardProfil(String id) {
         initComponents();
-        idUser = id;
-        refreshTable(idUser);
+        username = id;
+        refreshTable(username);
     }
 
     public void refreshTable(String nama) {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
         Object[] rowData = new Object[3];
-        List<String> postList = viewListPost(); // Assuming viewListPost() returns a List<Post>
-
+        List<String> postList = viewListPostUser(username); // Assuming viewListPost() returns a List<Post>
+//        ArrayList<String> postUser = new ArrayList<>();
         // Loop through the list of posts
 //        for (post post : postList) {
 //            // Perform operations using the Post object
@@ -43,13 +43,13 @@ public class FormDashboardProfil extends javax.swing.JFrame {
 //            // Add the rowData to the table model
 //            model.addRow(rowData);
 //        }
+
         for (String obj : postList) {
             String[] arr = obj.split("///");
-            if (arr[1] == idUser) {
-                rowData[0] = arr[2];
-                rowData[1] = arr[3];
-                rowData[2] = arr[4];
-            }
+            rowData[0] = arr[0];
+            rowData[1] = arr[1];
+            rowData[2] = arr[2];
+            
             model.addRow(rowData);
         }
     }
@@ -191,7 +191,7 @@ public class FormDashboardProfil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormDashboardProfil(idUser).setVisible(true);
+                new FormDashboardProfil(username).setVisible(true);
             }
         });
     }
@@ -210,4 +210,12 @@ public class FormDashboardProfil extends javax.swing.JFrame {
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.viewListPost();
     }
+
+    private static java.util.List<java.lang.String> viewListPostUser(java.lang.String username) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.viewListPostUser(username);
+    }
+
+
 }

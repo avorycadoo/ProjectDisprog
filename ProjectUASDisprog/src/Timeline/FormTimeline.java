@@ -317,8 +317,8 @@ public class FormTimeline extends javax.swing.JFrame {
 
         if (col == 1) {
 //            int row2 = target.getSelectedRow();
-            idu = target.getValueAt(col, 0).toString();
-            FormDashboardProfil fdp = new FormDashboardProfil(idu);
+//            idu = target.getValueAt(col, 0).toString();
+            FormDashboardProfil fdp = new FormDashboardProfil(target.getValueAt(row, 1).toString());
             fdp.setVisible(true);
         }
 //        

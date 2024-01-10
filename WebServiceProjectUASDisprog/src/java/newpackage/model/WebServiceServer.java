@@ -203,4 +203,25 @@ public class WebServiceServer {
         return like.likePost();
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "viewListPostUser")
+    public ArrayList<String> viewListPostUser(@WebParam(name = "username") String username) {
+        //TODO write your implementation code here:
+        this.post = new post(username);
+        ArrayList<Object> list = post.viewListDataId();
+        ArrayList<String> listPost = new ArrayList<>();
+
+        for (Object obj : list) {
+            if (obj instanceof post) {
+                post p = ((post) obj);      
+//                reply newr = new reply(r.getUser_id(), r.getPost_id(), r.getReply());
+//                listReply.add(newr);
+                listPost.add(p.getJudul()+ "///" + p.getDeskripsi()+ "///" + p.getCreated_date());
+            }
+        }
+        return listPost;
+    }
+
 }

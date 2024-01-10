@@ -50,6 +50,16 @@ public class post extends MyModel {
         setDeskripsi(deskripsi);
         setUser_pembuat(user_pembuat);
     }
+    
+    public post(String username) {
+        setUsername(username);
+    }
+    
+    public post(String judul, String deskripsi, Timestamp created_date) {
+        setJudul(judul);
+        setDeskripsi(deskripsi);
+        setCreated_date(created_date);
+    }
 
     public post(int id, String judul, String deskripsi, int user_pembuat) {
         setId(id);
@@ -179,6 +189,29 @@ public class post extends MyModel {
                         this.result.getInt("user_pembuat"),
                         this.result.getTimestamp("created_date"),
                         this.result.getString("username")
+                );
+
+                collections.add(tmpPost);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return collections;
+    }
+    
+    public ArrayList<Object> viewListDataId() {
+        ArrayList<Object> collections = new ArrayList<>();
+        try {
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+                        "SELECT p.*, u.username as username FROM post p inner join user u on p.user_pembuat = u.id WHERE username = ?");
+            sql.setString(1, this.username);
+            this.result = sql.executeQuery();
+            while (this.result.next()) {
+                post tmpPost = new post(
+                        this.result.getString("judul"),
+                        this.result.getString("deskripsi"),
+                        this.result.getTimestamp("created_date")
                 );
 
                 collections.add(tmpPost);
