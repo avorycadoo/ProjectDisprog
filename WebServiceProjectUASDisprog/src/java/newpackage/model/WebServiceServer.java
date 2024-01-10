@@ -147,10 +147,10 @@ public class WebServiceServer {
 
         for (Object obj : list) {
             if (obj instanceof post) {
-                post p = ((post) obj);      
+                post p = ((post) obj);
 //                reply newr = new reply(r.getUser_id(), r.getPost_id(), r.getReply());
 //                listReply.add(newr);
-                listPost.add(p.getId() + "///" + p.getUser_pembuat() + "///" + p.getJudul()+ "///" + p.getDeskripsi()+ "///" + p.getCreated_date() + "///" + p.getUsername());
+                listPost.add(p.getId() + "///" + p.getUser_pembuat() + "///" + p.getJudul() + "///" + p.getDeskripsi() + "///" + p.getCreated_date() + "///" + p.getUsername());
             }
         }
         return listPost;
@@ -171,8 +171,6 @@ public class WebServiceServer {
     /**
      * Web service operation
      */
-   
-
     /**
      * Web service operation
      */
@@ -206,7 +204,6 @@ public class WebServiceServer {
     /**
      * Web service operation
      */
-<<<<<<< Updated upstream
     @WebMethod(operationName = "viewListPostUser")
     public ArrayList<String> viewListPostUser(@WebParam(name = "username") String username) {
         //TODO write your implementation code here:
@@ -216,20 +213,23 @@ public class WebServiceServer {
 
         for (Object obj : list) {
             if (obj instanceof post) {
-                post p = ((post) obj);      
+                post p = ((post) obj);
 //                reply newr = new reply(r.getUser_id(), r.getPost_id(), r.getReply());
 //                listReply.add(newr);
-                listPost.add(p.getJudul()+ "///" + p.getDeskripsi()+ "///" + p.getCreated_date());
+                listPost.add(p.getJudul() + "///" + p.getDeskripsi() + "///" + p.getCreated_date());
             }
         }
         return listPost;
-=======
+
+    }
+
+    /**
+     * Web service operation
+     */
     @WebMethod(operationName = "replyPost")
     public String replyPost(@WebParam(name = "post_id") int post_id) {
         //TODO write your implementation code here:
         this.reply = new reply(post_id);
         return reply.replyPost();
->>>>>>> Stashed changes
     }
-
 }
