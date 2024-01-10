@@ -197,11 +197,10 @@ public class WebServiceServer {
      * Web service operation
      */
     @WebMethod(operationName = "likePost")
-    public Boolean likePost(@WebParam(name = "user_id") int user_id) {
+    public int likePost(@WebParam(name = "user_id") int user_id) {
         //TODO write your implementation code here:
         this.like = new like(user_id);
-        like.likePost();
-        return true;
+        return like.likePost();
     }
 
 }

@@ -75,7 +75,7 @@ public class FormTimeline extends javax.swing.JFrame {
         model.setRowCount(0);
         String[] rowData = new String[7];
         List<String> listPost = viewListPost();
-//        List<String> listLike = likePost(Integer.parseInt(idu));
+        int listLike = 0;
 
 //        String komen = "";
         for (String obj : listPost) {
@@ -85,10 +85,8 @@ public class FormTimeline extends javax.swing.JFrame {
             rowData[2] = arr[2];
             rowData[3] = arr[3];
             rowData[4] = arr[4];
-            for (String obj2 : listLike) {
-                String[] arr2 = obj2.split("///");
-
-            }
+            rowData[5] = String.valueOf(likePost(Integer.parseInt(arr[5])));
+            
             model.addRow(rowData);
         }
 //        txtKomenArea.setText(komen);
@@ -401,9 +399,13 @@ public class FormTimeline extends javax.swing.JFrame {
         return port.addLike(userId, postId);
     }
 
-    private static Boolean likePost(int userId) {
+    private static int likePost(int userId) {
         newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.likePost(userId);
     }
+
+    
+
+   
 }
