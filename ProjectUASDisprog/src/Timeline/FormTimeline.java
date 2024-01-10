@@ -29,6 +29,8 @@ import DashboardProfil.FormDashboardProfil;
  */
 public class FormTimeline extends javax.swing.JFrame {
 
+    post p;
+
     /**
      * Creates new form FormTimeline
      */
@@ -77,7 +79,7 @@ public class FormTimeline extends javax.swing.JFrame {
         for (String obj : listPost) {
             String[] arr = obj.split("///");
             rowData[0] = arr[0];
-            rowData[1] = arr[1];
+            rowData[1] = arr[5]; //int           
             rowData[2] = arr[2];
             rowData[3] = arr[3];
             rowData[4] = arr[4];
@@ -306,15 +308,15 @@ public class FormTimeline extends javax.swing.JFrame {
         JTable target = (JTable) evt.getSource();
 
         int col = target.getSelectedColumn();
-        if (col == 0) {
-            idPost = Integer.parseInt(target.getValueAt(col, 0).toString());
-        } else if (col == 1) {
+        int row = target.getSelectedRow();
+        idPost = Integer.parseInt(target.getValueAt(row, 0).toString());
+        
+        if (col == 1) {
 //            int row2 = target.getSelectedRow();
             idu = target.getValueAt(col, 0).toString();
-            FormDashboardProfil fdp = new FormDashboardProfil(username);
+            FormDashboardProfil fdp = new FormDashboardProfil(idu);
             fdp.setVisible(true);
         }
-
 //        
     }//GEN-LAST:event_tablePostMouseClicked
 

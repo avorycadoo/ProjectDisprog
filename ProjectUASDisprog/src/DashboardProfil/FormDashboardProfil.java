@@ -15,23 +15,21 @@ import newpackage.model.post;
  */
 public class FormDashboardProfil extends javax.swing.JFrame {
 
-    static String nameUser;
-    post p;
+    static String idUser;
 
     /**
      * Creates new form FormDashboardProfil
      */
-    public FormDashboardProfil(String name) {
+    public FormDashboardProfil(String id) {
         initComponents();
-        nameUser = name;
-        refreshTable();
-        lblTest.setText(nameUser);
+        idUser = id;
+        refreshTable(idUser);
     }
 
-    public void refreshTable() {
+    public void refreshTable(String nama) {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
-        Object[] rowData = new Object[4];
+        Object[] rowData = new Object[3];
         List<String> postList = viewListPost(); // Assuming viewListPost() returns a List<Post>
 
         // Loop through the list of posts
@@ -47,14 +45,10 @@ public class FormDashboardProfil extends javax.swing.JFrame {
 //        }
         for (String obj : postList) {
             String[] arr = obj.split("///");
-            if (nameUser.equals(arr[1])) {
-//                post obj = (post) object;
-//                rowData[0] = obj.getJudul();
-//                rowData[1] = obj.getDeskripsi();
-                rowData[0] = arr[0];
-                rowData[1] = arr[1];
-                rowData[2] = arr[2];
-                rowData[3] = arr[3];
+            if (arr[1] == idUser) {
+                rowData[0] = arr[2];
+                rowData[1] = arr[3];
+                rowData[2] = arr[4];
             }
             model.addRow(rowData);
         }
@@ -75,7 +69,6 @@ public class FormDashboardProfil extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePost = new javax.swing.JTable();
-        lblTest = new javax.swing.JLabel();
 
         jButton3.setText("Like");
 
@@ -114,17 +107,17 @@ public class FormDashboardProfil extends javax.swing.JFrame {
 
         tablePost.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Creator", "Judul", "Deskripsi", "Created Date"
+                "Judul", "Deskripsi", "Created Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,8 +125,6 @@ public class FormDashboardProfil extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablePost);
-
-        lblTest.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,9 +137,7 @@ public class FormDashboardProfil extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblTest, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(22, 504, Short.MAX_VALUE)
                         .addComponent(btnClose)))
                 .addContainerGap())
         );
@@ -159,9 +148,7 @@ public class FormDashboardProfil extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnClose)
-                    .addComponent(lblTest))
+                .addComponent(btnClose)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -204,7 +191,7 @@ public class FormDashboardProfil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormDashboardProfil(nameUser).setVisible(true);
+                new FormDashboardProfil(idUser).setVisible(true);
             }
         });
     }
@@ -215,7 +202,6 @@ public class FormDashboardProfil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTest;
     private javax.swing.JTable tablePost;
     // End of variables declaration//GEN-END:variables
 

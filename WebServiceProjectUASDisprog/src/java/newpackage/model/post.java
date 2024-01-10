@@ -21,6 +21,15 @@ public class post extends MyModel {
     private Timestamp created_date;
     private Timestamp updated_date;
     private int user_pembuat;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public post() {
         this.judul = null;
@@ -41,12 +50,21 @@ public class post extends MyModel {
         setDeskripsi(deskripsi);
         setUser_pembuat(user_pembuat);
     }
-    
+
     public post(int id, String judul, String deskripsi, int user_pembuat) {
         setId(id);
         setJudul(judul);
         setDeskripsi(deskripsi);
         setUser_pembuat(user_pembuat);
+    }
+
+    public post(int id, String judul, String deskripsi, int user_pembuat, Timestamp created_date, String username) {
+        setId(id);
+        setJudul(judul);
+        setDeskripsi(deskripsi);
+        setUser_pembuat(user_pembuat);
+        setCreated_date(created_date);
+        setUsername(username);
     }
 
     public int getId() {
@@ -152,14 +170,15 @@ public class post extends MyModel {
         ArrayList<Object> collections = new ArrayList<>();
         try {
             this.statement = (Statement) MyModel.conn.createStatement();
-            this.result = this.statement.executeQuery("SELECT * FROM post ");
+            this.result = this.statement.executeQuery("SELECT p.*, u.username as username FROM post p inner join user u on p.user_pembuat = u.id");
             while (this.result.next()) {
                 post tmpPost = new post(
                         this.result.getInt("id"),
                         this.result.getString("judul"),
                         this.result.getString("deskripsi"),
                         this.result.getInt("user_pembuat"),
-                        this.result.getTimestamp("created_date")
+                        this.result.getTimestamp("created_date"),
+                        this.result.getString("username")
                 );
 
                 collections.add(tmpPost);

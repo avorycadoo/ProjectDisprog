@@ -150,7 +150,7 @@ public class WebServiceServer {
                 post p = ((post) obj);      
 //                reply newr = new reply(r.getUser_id(), r.getPost_id(), r.getReply());
 //                listReply.add(newr);
-                listPost.add(p.getId() + "///" + p.getUser_pembuat() + "///" + p.getJudul()+ "///" + p.getDeskripsi()+ "///" + p.getCreated_date());
+                listPost.add(p.getId() + "///" + p.getUser_pembuat() + "///" + p.getJudul()+ "///" + p.getDeskripsi()+ "///" + p.getCreated_date() + "///" + p.getUsername());
             }
         }
         return listPost;
