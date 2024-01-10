@@ -185,14 +185,19 @@ public class FormLogin extends javax.swing.JFrame {
         String password = txtPassword.getText();
 
         String user = login(username, password);
-        String[] arr = user.split("-");
-        String iduser = arr[0];
-        JOptionPane.showMessageDialog(this, "Welcome " + arr[1]);
-        
-        FormTimeline timeline = new FormTimeline(user);
-        timeline.setVisible(true);
-        
-        this.dispose();
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "Anda belum memiliki akun silahkan registrasi terlebih dahulu!");
+        } else {
+            String[] arr = user.split("-");
+            String iduser = arr[0];
+            JOptionPane.showMessageDialog(this, "Welcome " + arr[1]);
+
+            FormTimeline timeline = new FormTimeline(user);
+            timeline.setVisible(true);
+
+            this.dispose();
+        }
+
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -256,6 +261,5 @@ public class FormLogin extends javax.swing.JFrame {
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.login(username, password);
     }
-
 
 }
