@@ -24,6 +24,10 @@
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
 
+<xs:element name="likePost" type="tns:likePost"/>
+
+<xs:element name="likePostResponse" type="tns:likePostResponse"/>
+
 <xs:element name="login" type="tns:login"/>
 
 <xs:element name="loginResponse" type="tns:loginResponse"/>
@@ -48,19 +52,6 @@
 
 <xs:element name="viewListPostResponse" type="tns:viewListPostResponse"/>
 
-<xs:complexType name="viewListAccount">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-<xs:element name="password" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="viewListAccountResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="login">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -74,27 +65,13 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="addChat2">
-<xs:sequence>
-<xs:element name="chat" type="xs:string" minOccurs="0"/>
-<xs:element name="user_id" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="addChat2Response">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="addLike">
+<xs:complexType name="likePost">
 <xs:sequence>
 <xs:element name="user_id" type="xs:int"/>
-<xs:element name="post_id" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="addLikeResponse">
+<xs:complexType name="likePostResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
@@ -126,15 +103,17 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="hello">
+<xs:complexType name="ubahPost">
 <xs:sequence>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="judul" type="xs:string" minOccurs="0"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="userPembuat" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="helloResponse">
+<xs:complexType name="ubahPostResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -148,17 +127,54 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="ubahPost">
+<xs:complexType name="viewListAccount">
 <xs:sequence>
-<xs:element name="judul" type="xs:string" minOccurs="0"/>
-<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
-<xs:element name="userPembuat" type="xs:int"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="ubahPostResponse">
+<xs:complexType name="viewListAccountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addChat2">
+<xs:sequence>
+<xs:element name="chat" type="xs:string" minOccurs="0"/>
+<xs:element name="user_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addChat2Response">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addLike">
+<xs:sequence>
+<xs:element name="user_id" type="xs:int"/>
+<xs:element name="post_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addLikeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -176,6 +192,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getChat">
+<xs:sequence>
+<xs:element name="idPost" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getChatResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="updatePost">
 <xs:sequence>
 <xs:element name="id" type="xs:int"/>
@@ -188,18 +216,6 @@
 <xs:complexType name="updatePostResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getChat">
-<xs:sequence>
-<xs:element name="idPost" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getChatResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

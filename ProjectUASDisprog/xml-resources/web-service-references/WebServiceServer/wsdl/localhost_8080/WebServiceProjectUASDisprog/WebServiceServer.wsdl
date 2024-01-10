@@ -4,30 +4,6 @@
 <xsd:import namespace="http://model.newpackage/" schemaLocation="http://localhost:8080/WebServiceProjectUASDisprog/WebServiceServer?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="viewListPost">
-<part name="parameters" element="tns:viewListPost"/>
-</message>
-<message name="viewListPostResponse">
-<part name="parameters" element="tns:viewListPostResponse"/>
-</message>
-<message name="registrasi">
-<part name="parameters" element="tns:registrasi"/>
-</message>
-<message name="registrasiResponse">
-<part name="parameters" element="tns:registrasiResponse"/>
-</message>
-<message name="viewListAccount">
-<part name="parameters" element="tns:viewListAccount"/>
-</message>
-<message name="viewListAccountResponse">
-<part name="parameters" element="tns:viewListAccountResponse"/>
-</message>
-<message name="updatePost">
-<part name="parameters" element="tns:updatePost"/>
-</message>
-<message name="updatePostResponse">
-<part name="parameters" element="tns:updatePostResponse"/>
-</message>
 <message name="login">
 <part name="parameters" element="tns:login"/>
 </message>
@@ -39,24 +15,6 @@
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
-</message>
-<message name="addLike">
-<part name="parameters" element="tns:addLike"/>
-</message>
-<message name="addLikeResponse">
-<part name="parameters" element="tns:addLikeResponse"/>
-</message>
-<message name="ubahPost">
-<part name="parameters" element="tns:ubahPost"/>
-</message>
-<message name="ubahPostResponse">
-<part name="parameters" element="tns:ubahPostResponse"/>
-</message>
-<message name="addReply">
-<part name="parameters" element="tns:addReply"/>
-</message>
-<message name="addReplyResponse">
-<part name="parameters" element="tns:addReplyResponse"/>
 </message>
 <message name="getChat">
 <part name="parameters" element="tns:getChat"/>
@@ -70,29 +28,61 @@
 <message name="addPostResponse">
 <part name="parameters" element="tns:addPostResponse"/>
 </message>
+<message name="addLike">
+<part name="parameters" element="tns:addLike"/>
+</message>
+<message name="addLikeResponse">
+<part name="parameters" element="tns:addLikeResponse"/>
+</message>
 <message name="addChat2">
 <part name="parameters" element="tns:addChat2"/>
 </message>
 <message name="addChat2Response">
 <part name="parameters" element="tns:addChat2Response"/>
 </message>
+<message name="addReply">
+<part name="parameters" element="tns:addReply"/>
+</message>
+<message name="addReplyResponse">
+<part name="parameters" element="tns:addReplyResponse"/>
+</message>
+<message name="likePost">
+<part name="parameters" element="tns:likePost"/>
+</message>
+<message name="likePostResponse">
+<part name="parameters" element="tns:likePostResponse"/>
+</message>
+<message name="ubahPost">
+<part name="parameters" element="tns:ubahPost"/>
+</message>
+<message name="ubahPostResponse">
+<part name="parameters" element="tns:ubahPostResponse"/>
+</message>
+<message name="viewListPost">
+<part name="parameters" element="tns:viewListPost"/>
+</message>
+<message name="viewListPostResponse">
+<part name="parameters" element="tns:viewListPostResponse"/>
+</message>
+<message name="updatePost">
+<part name="parameters" element="tns:updatePost"/>
+</message>
+<message name="updatePostResponse">
+<part name="parameters" element="tns:updatePostResponse"/>
+</message>
+<message name="registrasi">
+<part name="parameters" element="tns:registrasi"/>
+</message>
+<message name="registrasiResponse">
+<part name="parameters" element="tns:registrasiResponse"/>
+</message>
+<message name="viewListAccount">
+<part name="parameters" element="tns:viewListAccount"/>
+</message>
+<message name="viewListAccountResponse">
+<part name="parameters" element="tns:viewListAccountResponse"/>
+</message>
 <portType name="WebServiceServer">
-<operation name="viewListPost">
-<input wsam:Action="http://model.newpackage/WebServiceServer/viewListPostRequest" message="tns:viewListPost"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/viewListPostResponse" message="tns:viewListPostResponse"/>
-</operation>
-<operation name="registrasi">
-<input wsam:Action="http://model.newpackage/WebServiceServer/registrasiRequest" message="tns:registrasi"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/registrasiResponse" message="tns:registrasiResponse"/>
-</operation>
-<operation name="viewListAccount">
-<input wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountRequest" message="tns:viewListAccount"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountResponse" message="tns:viewListAccountResponse"/>
-</operation>
-<operation name="updatePost">
-<input wsam:Action="http://model.newpackage/WebServiceServer/updatePostRequest" message="tns:updatePost"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/updatePostResponse" message="tns:updatePostResponse"/>
-</operation>
 <operation name="login">
 <input wsam:Action="http://model.newpackage/WebServiceServer/loginRequest" message="tns:login"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/loginResponse" message="tns:loginResponse"/>
@@ -100,18 +90,6 @@
 <operation name="hello">
 <input wsam:Action="http://model.newpackage/WebServiceServer/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/helloResponse" message="tns:helloResponse"/>
-</operation>
-<operation name="addLike">
-<input wsam:Action="http://model.newpackage/WebServiceServer/addLikeRequest" message="tns:addLike"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/addLikeResponse" message="tns:addLikeResponse"/>
-</operation>
-<operation name="ubahPost">
-<input wsam:Action="http://model.newpackage/WebServiceServer/ubahPostRequest" message="tns:ubahPost"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/ubahPostResponse" message="tns:ubahPostResponse"/>
-</operation>
-<operation name="addReply">
-<input wsam:Action="http://model.newpackage/WebServiceServer/addReplyRequest" message="tns:addReply"/>
-<output wsam:Action="http://model.newpackage/WebServiceServer/addReplyResponse" message="tns:addReplyResponse"/>
 </operation>
 <operation name="getChat">
 <input wsam:Action="http://model.newpackage/WebServiceServer/getChatRequest" message="tns:getChat"/>
@@ -121,49 +99,45 @@
 <input wsam:Action="http://model.newpackage/WebServiceServer/addPostRequest" message="tns:addPost"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/addPostResponse" message="tns:addPostResponse"/>
 </operation>
+<operation name="addLike">
+<input wsam:Action="http://model.newpackage/WebServiceServer/addLikeRequest" message="tns:addLike"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/addLikeResponse" message="tns:addLikeResponse"/>
+</operation>
 <operation name="addChat2">
 <input wsam:Action="http://model.newpackage/WebServiceServer/addChat2Request" message="tns:addChat2"/>
 <output wsam:Action="http://model.newpackage/WebServiceServer/addChat2Response" message="tns:addChat2Response"/>
 </operation>
+<operation name="addReply">
+<input wsam:Action="http://model.newpackage/WebServiceServer/addReplyRequest" message="tns:addReply"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/addReplyResponse" message="tns:addReplyResponse"/>
+</operation>
+<operation name="likePost">
+<input wsam:Action="http://model.newpackage/WebServiceServer/likePostRequest" message="tns:likePost"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/likePostResponse" message="tns:likePostResponse"/>
+</operation>
+<operation name="ubahPost">
+<input wsam:Action="http://model.newpackage/WebServiceServer/ubahPostRequest" message="tns:ubahPost"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/ubahPostResponse" message="tns:ubahPostResponse"/>
+</operation>
+<operation name="viewListPost">
+<input wsam:Action="http://model.newpackage/WebServiceServer/viewListPostRequest" message="tns:viewListPost"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/viewListPostResponse" message="tns:viewListPostResponse"/>
+</operation>
+<operation name="updatePost">
+<input wsam:Action="http://model.newpackage/WebServiceServer/updatePostRequest" message="tns:updatePost"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/updatePostResponse" message="tns:updatePostResponse"/>
+</operation>
+<operation name="registrasi">
+<input wsam:Action="http://model.newpackage/WebServiceServer/registrasiRequest" message="tns:registrasi"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/registrasiResponse" message="tns:registrasiResponse"/>
+</operation>
+<operation name="viewListAccount">
+<input wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountRequest" message="tns:viewListAccount"/>
+<output wsam:Action="http://model.newpackage/WebServiceServer/viewListAccountResponse" message="tns:viewListAccountResponse"/>
+</operation>
 </portType>
 <binding name="WebServiceServerPortBinding" type="tns:WebServiceServer">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="viewListPost">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="registrasi">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="viewListAccount">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="updatePost">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="login">
 <soap:operation soapAction=""/>
 <input>
@@ -174,33 +148,6 @@
 </output>
 </operation>
 <operation name="hello">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="addLike">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="ubahPost">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="addReply">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -227,7 +174,79 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="addLike">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="addChat2">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="addReply">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="likePost">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="ubahPost">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="viewListPost">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="updatePost">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="registrasi">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="viewListAccount">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

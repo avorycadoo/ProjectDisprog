@@ -73,8 +73,10 @@ public class FormTimeline extends javax.swing.JFrame {
     public void refresh(String id) {
         DefaultTableModel model = (DefaultTableModel) tablePost.getModel();
         model.setRowCount(0);
-        String[] rowData = new String[5];
+        String[] rowData = new String[7];
         List<String> listPost = viewListPost();
+//        List<String> listLike = likePost(Integer.parseInt(idu));
+
 //        String komen = "";
         for (String obj : listPost) {
             String[] arr = obj.split("///");
@@ -83,6 +85,10 @@ public class FormTimeline extends javax.swing.JFrame {
             rowData[2] = arr[2];
             rowData[3] = arr[3];
             rowData[4] = arr[4];
+            for (String obj2 : listLike) {
+                String[] arr2 = obj2.split("///");
+
+            }
             model.addRow(rowData);
         }
 //        txtKomenArea.setText(komen);
@@ -177,20 +183,20 @@ public class FormTimeline extends javax.swing.JFrame {
 
         tablePost.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Creator", "Judul", "Deskripsi", "Created Date"
+                "id", "Creator", "Judul", "Deskripsi", "Created Date", "Jumlah Like", "Jumlah Reply"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -310,7 +316,7 @@ public class FormTimeline extends javax.swing.JFrame {
         int col = target.getSelectedColumn();
         int row = target.getSelectedRow();
         idPost = Integer.parseInt(target.getValueAt(row, 0).toString());
-        
+
         if (col == 1) {
 //            int row2 = target.getSelectedRow();
             idu = target.getValueAt(col, 0).toString();
@@ -393,5 +399,11 @@ public class FormTimeline extends javax.swing.JFrame {
         newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
         newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
         return port.addLike(userId, postId);
+    }
+
+    private static Boolean likePost(int userId) {
+        newpackage.model.WebServiceServer_Service service = new newpackage.model.WebServiceServer_Service();
+        newpackage.model.WebServiceServer port = service.getWebServiceServerPort();
+        return port.likePost(userId);
     }
 }

@@ -20,6 +20,10 @@ public class like extends MyModel {
         setUser_id(user_id);
         setPost_id(post_id);
     }
+    
+    public like(int user_id){
+        setUser_id(user_id);
+    }
 
     public int getUser_id() {
         return user_id;
