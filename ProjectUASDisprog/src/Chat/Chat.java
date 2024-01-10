@@ -51,21 +51,21 @@ public class Chat extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public void listAcc() {
-        String res = viewListAccount("", "");
-        res = res.substring(1);
-        res = res.replace("]", "");
-        String[] splitRes = res.split(", ");
-
-        cmbDaftarAcc.removeAllItems(); // Clear existing items before adding new ones
-
-        for (String acc : splitRes) {
-            String[] i = acc.split("-");
-            String username = i[2];
-            cmbDaftarAcc.addItem(username);
-        }
-        cmbDaftarAcc.removeItem(user); // Assuming this is the logged-in user's username
-    }
+//    public void listAcc() {
+//        String res = viewListAccount("", "");
+//        res = res.substring(1);
+//        res = res.replace("]", "");
+//        String[] splitRes = res.split(", ");
+//
+//        cmbDaftarAcc.removeAllItems(); // Clear existing items before adding new ones
+//
+//        for (String acc : splitRes) {
+//            String[] i = acc.split("-");
+//            String username = i[2];
+//            cmbDaftarAcc.addItem(username);
+//        }
+//        cmbDaftarAcc.removeItem(user); // Assuming this is the logged-in user's username
+//    }
 
     public void run() {
         while (true) {
@@ -92,8 +92,6 @@ public class Chat extends javax.swing.JFrame implements Runnable {
         txtHistory = new javax.swing.JTextArea();
         txtChat = new javax.swing.JTextField();
         btnReply = new javax.swing.JButton();
-        cmbDaftarAcc = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,8 +131,6 @@ public class Chat extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jLabel2.setText("Pilih Pengguna:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,28 +145,18 @@ public class Chat extends javax.swing.JFrame implements Runnable {
                         .addGap(18, 18, 18)
                         .addComponent(btnReply)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(cmbDaftarAcc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbDaftarAcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReply))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,9 +218,7 @@ public class Chat extends javax.swing.JFrame implements Runnable {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReply;
-    private javax.swing.JComboBox<String> cmbDaftarAcc;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtChat;
